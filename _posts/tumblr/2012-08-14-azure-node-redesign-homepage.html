@@ -1,0 +1,50 @@
+---
+layout: post
+title: Azure Node.js developer center homepage redesign
+date: '2012-08-14T19:41:48-07:00'
+tags:
+- Windows Azure
+- Node.js
+- Design
+tumblr_url: http://hashtagfail.com/post/29453543052/azure-node-redesign-homepage
+---
+<p>As a PM at Microsoft, you frequently get thrown into new unfamiliar areas with the expectation that somehow you&rsquo;ll figure out your way around. Just recently I had a first-hand experience with that as the team decided that it was time to <strong>refresh the <a href="http://windowsazure.com/develop/nodejs">Windows Azure Node.js developer center</a></strong>. The dev center first went live in December 2011, and since then it has received great new content, but the overall structure and the homepage in particular had changed very little. This was standing in the way of developers getting to our great content and resources, and was ultimately driving people away from trying Node.js on Azure.</p>
+<p>Over the last three weeks I had the opportunity to work with some great folks across the Azure IX, UX, and PM teams and rethink our dev center. This is new to me, so I wanted to document my experiences here in blog series (hopefully). In this first part we will focus on the dev center homepage.</p>
+<p><em>A big thanks to Molly Bostic, Lydia Bagwell, Jodie Eilers, Jesse Francisco, Brad Goring, Lucas Stanford, Larry Franks, and Mohit Srivastava, without whom none of this would have been possible.</em></p>
+<h3>The current dev center</h3>
+<p><img alt="Current Node.js dev center" src="https://66.media.tumblr.com/tumblr_m8rnsocppu1qccglw.png"/></p>
+<p>Let&rsquo;s start with the current dev center and the approaches we used to identify issues folks were having with it. First, we reached out to our advisory community and collected some feedback:</p>
+<blockquote>
+<p>“there is <strong>way too much</strong> on this page”</p>
+<p>“make a <strong>clear single message/call to action</strong> above the fold”</p>
+<p>“get rid of the whole left hand items, it&rsquo;s just <strong>clutter</strong>”</p>
+<p>“since one is on the Node page get rid of the other links to all the other languages… <strong>I want to see things about Node, not all the other stuff</strong>”</p>
+</blockquote>
+<p>We then conducted a heat map study and looked at the page navigation patterns associated with the site.</p>
+<p><a class="fancybox" href="http://media.tumblr.com/tumblr_m8rsls1D7l1qccglw.png" rel="gallery1" title="Dev center heat map"> <img alt="Dev center heat map" src="https://66.media.tumblr.com/tumblr_m8rsls1D7l1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rtooa8Kn1qccglw.png" rel="gallery1" title="Dev center user paths"> <img alt="Dev center user paths" src="https://66.media.tumblr.com/tumblr_m8rtooa8Kn1qccglw.png" width="210"/></a></p>
+<p>Some additional learnings emerged at this point:</p>
+<ul><li>Based on the heat map and the flow of visitors from and to the other language developer centers (especially .NET), there seemed to be quite a bit of <strong>&ldquo;browsing&rdquo; behavior</strong>: folks simply exploring different Azure languages. We didn&rsquo;t want to inhibit that flow, so we decided to keep the header that lets you quickly jump between languages</li>
+<li>There is a lot of flow to the tutorials on the page, especially the first tutorial we list on the page. <strong>Users tend to actively seek out tutorials</strong>, as seen in the heat map: it appears that tutorials are the preferred form of content.</li>
+<li>The <strong>prime real estate</strong> is understandably the middle of the page right above the fold</li>
+<li>Not many folks are clicking on the <strong>&ldquo;free trial&rdquo; button</strong> to sign up for Azure. </li>
+<li>Lots of folks are <strong>downloading the SDK</strong>, but is that all they need to get started? Wouldn&rsquo;t reading a tutorial be a more useful?</li>
+</ul><h3>Information Architecture</h3>
+<p>Before we set off to try and address this feedback, we formulated a set of principles to follow in the new design:</p>
+<ol><li>Clear call to action</li>
+<li>Keep it fresh</li>
+<li>Reduce text-heaviness</li>
+<li>Improve content categorization</li>
+<li>Optimize click stream</li>
+</ol><p>Based on these principles we started sketching. First we played around on the whiteboard and then worked our thinking into wireframes. Here are some of the options that we considered at this stage of the design.</p>
+<p><a class="fancybox" href="http://media.tumblr.com/tumblr_m8rvt1yrw81qccglw.png" rel="gallery2" title="Whiteboard sketch"> <img alt="Whiteboard sketch" src="https://66.media.tumblr.com/tumblr_m8rvt1yrw81qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rw6n01Fr1qccglw.png" rel="gallery2" title="Wireframe option 1"> <img alt="Wireframe option 1" src="https://66.media.tumblr.com/tumblr_m8rw6n01Fr1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rw6uh7jn1qccglw.png" rel="gallery2" title="Wireframe option 2"> <img alt="Wireframe option 2" src="https://66.media.tumblr.com/tumblr_m8rw6uh7jn1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rw72bX871qccglw.png" rel="gallery2" title="Wireframe option 3"> <img alt="Wireframe option 3" src="https://66.media.tumblr.com/tumblr_m8rw72bX871qccglw.png" width="210"/></a></p>
+<p>You will see that all of the sketches significantly reduce the amount of content and clutter on the page (especially above the fold), partly by removing the left-hand navigation. A single call to action is prominently featured above the fold in all of them. Fresh content is also prominent in all of the designs through the use of a carousel control.</p>
+<p>Option 1 didn&rsquo;t dedicate a permanent spot to the call to action we wanted to highlight. Option 3 caused the content categories (Compute, Data, App Services) to wrap and disrupt the flow of the page. Option 2 was selected and we proceeded  with refining that. </p>
+<h3>Graphic Design</h3>
+<p>We then proceeded to produce high-fidelity screenshots of the selected option. </p>
+<p><a class="fancybox" href="http://media.tumblr.com/tumblr_m8rycdPSpM1qccglw.png" rel="gallery3" title="Carousel front tile"> <img alt="Carousel front tile" src="https://66.media.tumblr.com/tumblr_m8rycdPSpM1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rycmR2EK1qccglw.png" rel="gallery3" title="Carousel second tile"> <img alt="Carousel second tile" src="https://66.media.tumblr.com/tumblr_m8rycmR2EK1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rycsFZfa1qccglw.png" rel="gallery3" title="Carousel third tile"> <img alt="Carousel third tile" src="https://66.media.tumblr.com/tumblr_m8rycsFZfa1qccglw.png" width="210"/></a> <a class="fancybox" href="http://media.tumblr.com/tumblr_m8rycxe8yD1qccglw.png" rel="gallery3" title="Carousel fourth tile"> <img alt="Carousel fourth tile" src="https://66.media.tumblr.com/tumblr_m8rycxe8yD1qccglw.png" width="210"/></a></p>
+<p>You will notice a few things that have changed. As the design team was working through this, they realized that the carousel with fresh content we were envisioning wouldn&rsquo;t fit in the small area we had dedicated to it, so we had to invert the carousel and call to action areas. We did not want the call to action to get lost, so the first tile of the carousel was designed to naturally lead folks to get started. We also realized we wanted to maintain the blog spotlight area and it fit nicely alongside our three content categories. </p>
+<h3>To Production and Beyond</h3>
+<p><a href="https://www.windowsazure.com/en-us/develop/nodejs/"><img alt="Updated Node.js dev center" src="https://66.media.tumblr.com/tumblr_m8rytpJpLI1qccglw.png"/></a></p>
+<p>After a two week design phase and one week of implementation, we were able to push the new design into production and you can <a href="https://www.windowsazure.com/en-us/develop/nodejs/">go check it out now</a>. </p>
+<p>Unfortunately, <strong>releasing the new dev center homepage is only half the battle</strong>. Over the next few weeks we plan to tackle 30+ documentation topics that the dev center contains and make sure each one of them is the best it can be. We are also keenly keeping an eye on a variety of metrics (including the heat maps and navigation data shown above) to make sure the new design is actually helping address the problems we set out to solve. We will continue to tweak and refine the design in response to that data and I hope to share the results as we make progress.</p>
+<p><strong>In the mean time, I would be glad to hear from all of you. Did you use the old or new Node.js dev center? Let me know what you think in the comments!</strong></p>

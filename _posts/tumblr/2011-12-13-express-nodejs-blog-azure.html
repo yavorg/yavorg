@@ -1,0 +1,34 @@
+---
+layout: post
+title: Node.js/express blog on Azure in 5 minutes
+date: '2011-12-13T14:34:00-08:00'
+tags:
+- Windows Azure
+- Node.js
+tumblr_url: http://hashtagfail.com/post/14183649394/express-nodejs-blog-azure
+---
+<p>Following up on the announcements and demos shown at today&rsquo;s <a href="http://channel9.msdn.com/events/windowsazure/learn" title="Learn Windows Azure event on Channel 9">Learn Windows Azure event</a>, I decided to put together a very quick demo that gets you going on Azure with a real app as fast as possible. </p>
+<p>I decided to modify <a href="http://expressjs.com/" title="express">express&rsquo;</a> <a href="https://github.com/visionmedia/express/tree/master/examples/blog" title="express blog sample">blog sample</a> to use <a href="http://github.com/WindowsAzure/azure-sdk-for-node" title="Azure node libraries">Azure storage</a>, and also pre-configured all the service/role settings that Azure needs so you can get going as fast as possible.</p>
+<p>Here is the 5-minute recipe:</p>
+<ol><li>Get your <a href="http://www.windowsazure.com/en-us/pricing/free-trial/" title="Windows Azure portal">Windows Azure account</a></li>
+<li>Get the <a href="http://www.windowsazure.com/en-us/develop/nodejs/" title="Windows Azure SDK for Node.js">Windows Azure SDK for Node.js</a></li>
+<li>Get the <a href="https://github.com/yavorg/samples/tree/master/ExpressBlog" title="Express/Node sample on Azure">sample source code</a> from GitHub. If you are wondering where some of the static content in the sample came from, check out this <a href="http://www.windowsazure.com/en-us/develop/nodejs/tutorials/web-app-with-express/" title="Azure Node getting started">getting started document</a>.</li>
+<li>Get the needed Node packages by running this inside the <strong>ExpressBlog\WebRole</strong> folder:<br/><pre class="brush: bash">npm install</pre>
+</li>
+<li>You should now be able to launch the <strong>Windows Azure PowerShell for Node.js</strong> shortcut from your start menu. Make sure you run as Administrator. The rest of the steps here should be completed from that shell.</li>
+<li>Download your Azure publish settings:<br/><pre class="brush: bash">Get-AzurePublishSettings</pre>
+</li>
+<li>Import the settings:<br/><pre class="brush: bash">Import-AzurePublishSettings mine.publishsettings</pre>
+</li>
+<li>Head to the Azure portal and create a storage account under your subscription. Make note of the account name and access key.</li>
+<li>Modify the <strong>ExpressBlog\WebRole\Web.cloud.config</strong> file where indicated to include the storage settings.</li>
+<li>You are now ready to publish. Anywhere inside the <strong>ExpressBlog</strong> folder, run the following, making sure you use a unique service name:<br/><pre class="brush: bash">Publish-AzureService -Name uniqueServiceName</pre>
+</li>
+</ol><p>You&rsquo;re all done!<img alt="A Node/Express blog on Azure" src="https://66.media.tumblr.com/tumblr_lw60nrIUBC1qccglw.png"/></p>
+<p>Unfortunately things don&rsquo;t always go according to plan, so in case you get an Internal Server Error or anything else goes wrong after you deploy to the cloud, use this simple trick to debug.</p>
+<ol><li>Inside the <strong>Web.cloud.config</strong> file, enable logging:<br/><pre class="brush: xml">&lt;iisnode loggingEnabled="true" /&gt;</pre>
+</li>
+<li>Redeploy the service by simply typing:<br/><pre class="brush: bash">Publish-AzureService</pre>
+</li>
+<li>Look at the Node.js log file for hints of what may be wrong at <a href="http://uniqueServiceName.cloudapp.net/server.js.logs/0.txt">http://uniqueServiceName.cloudapp.net/server.js.logs/0.txt</a></li>
+</ol><div></div>

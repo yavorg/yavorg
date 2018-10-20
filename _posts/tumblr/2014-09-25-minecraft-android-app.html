@@ -1,0 +1,46 @@
+---
+layout: post
+title: 'Connecting the virtual and physical world: how to build a Minecraft companion
+  app with Azure'
+date: '2014-09-25T18:23:00-07:00'
+tags:
+- Presentations
+- Windows Azure Mobile Services
+- Android
+tumblr_url: http://hashtagfail.com/post/98432652260/minecraft-android-app
+---
+<p><iframe frameborder="0" height="281" src="//player.vimeo.com/video/107209587?title=0&amp;byline=0&amp;portrait=0" width="500"></iframe></p>
+<p>For some time, some coworkers and I have wondered if it would be possible to get Minecraft talking to Azure. The recent news about Microsoft and Minecraft gave us some extra incentive to try out out&hellip; so we <strong>decided to build a companion mobile app using Azure Mobile Services</strong>. The app sends me a push notification if someone enters my house in Minecraft and also lets me check what items I have in my in-game inventory. </p>
+<p><figure class="tmblr-full" data-orig-height="637" data-orig-width="357" data-orig-src="https://66.media.tumblr.com/02d5e8cc57b9c5fbfb59765cd1784d9a/tumblr_inline_nchiavbJ8O1qccglw.png"><img alt="image" src="https://66.media.tumblr.com/02d5e8cc57b9c5fbfb59765cd1784d9a/tumblr_inline_pcew59BdiV1qccglw_540.png" data-orig-height="637" data-orig-width="357" data-orig-src="https://66.media.tumblr.com/02d5e8cc57b9c5fbfb59765cd1784d9a/tumblr_inline_nchiavbJ8O1qccglw.png"/></figure></p>
+<p>The basic design is as follows:</p>
+<ol><li>Certain <strong>objects in Minecraft are connected to computers</strong> in the game. This includes things like a pressure plate and a chest.</li>
+<li>The <strong>computers send HTTP requests to a mobile service,</strong> passing in some simple payloads. This is implemented via some simple programs running on the computers.</li>
+<li>The <strong>mobile service can store data in a table or send a push notification</strong></li>
+<li>The <strong>mobile app is connected to the service</strong> to pull table data and receive notifications.</li>
+</ol><h3>Setting up the mobile service</h3>
+<p>First, we need to set up endpoints in the cloud for Minecraft to send information to. This is needed because the app can&rsquo;t talk directly to the game.</p>
+<ol><li>Create a <strong>Node.js-based mobile service</strong> in the <a href="http://manage.windowsazure.com">Azure Management</a> portal.</li>
+<li>On the <strong>API</strong> tab, create a new custom API called <strong>notifyallusers</strong>, using the code available <a href="https://github.com/yavorg/samples/blob/master/MineCraftTracker/MobileServiceScripts/api/notifyallusers.js">here</a>. This API simply takes any message passed in the body of the HTTP POST and sends it as a push notification to all subscribed devices.</li>
+<li>Create another API called <strong>updateinventory</strong>, using the code from <a href="https://github.com/yavorg/samples/blob/master/MineCraftTracker/MobileServiceScripts/api/updateinventory.js">here</a>. This API takes any key=value pairs in the body of the HTTP POST and tries to insert them into an <strong>Inventory</strong> table.</li>
+<li>We need to create the <strong>Inventory</strong> table, so head over to the DATA tab and create it. You can leave the permissions as is.</li>
+<li>Head over to the PUSH tab and complete sections 1 and 2 of <a href="http://azure.microsoft.com/en-us/documentation/articles/mobile-services-javascript-backend-android-get-started-push">this tutorial</a> to get your service set up to send push notifications. Don&rsquo;t worry about the server or client code, just do the configuration steps in the portal.</li>
+</ol><p>Now your mobile service is now all set up to receive requests. Let&rsquo;s now go into Minecraft and configure it to send requests. </p>
+<h3>Minecraft setup</h3>
+<p>Before we even launch the game, we need to make sure we have the right mod installed, since programmable computers are not part of the game by default. In this example, we used <a href="http://www.computercraft.info">ComputerCraft</a>, which, lets you write simple Lua scripts and run them in the computer.</p>
+<p>Once you have the mod running, you need to do the following:</p>
+<ol><li>To monitor the contents of a chest, put a <a href="http://minecraft.gamepedia.com/Trapped_Chest">Trapped Chest</a> directly adjacent to a <a href="http://computercraft.info/wiki/Computer">Computer</a> (in my case it was right on top).</li>
+<li>To set up the push notification when someone enters a house, place a <a href="http://minecraft.gamepedia.com/Pressure_Plate">Pressure Plate</a> right behind the door. Then put a Computer somewhere nearby. Connect the two by putting down <a href="http://minecraft.gamepedia.com/Redstone">Redstone</a> to connect the two. </li>
+<li>We now need to load the right programs into the two computers. The computer attached to the pressure plate will use the script <a href="https://github.com/yavorg/samples/blob/master/MineCraftTracker/MineCraftPrograms/AlertIntruder.lua">AlertIntruder</a> and the other one will use the script <a href="https://github.com/yavorg/samples/blob/master/MineCraftTracker/MineCraftPrograms/PostInventory.lua">PostInventory</a>. Be sure to <strong>change the URLs in the scripts to point to your own mobile service</strong>.</li>
+<li>Typing the script in is quite cumbersome, so it&rsquo;s easier to use <a href="http://pastebin.com">Pastebin</a> as an intermediary. Create a paste with the code and get the ID of the paste.</li>
+<li>In the computer, type <strong>pastebin get ID scriptName</strong>.</li>
+<li>Now that the script is downloaded locally, you can run it easily by typing it in (with the above example, just type <strong>scriptName</strong>). If you need to stop the program, hold down Ctrl + T.</li>
+<li>Make sure both scripts are downloaded and running on both computers.</li>
+</ol><p>When done it will look something like this:</p>
+<p><figure class="tmblr-full" data-orig-height="281" data-orig-width="500" data-orig-src="https://66.media.tumblr.com/e8a09785fd4e5116b06fc00b757d3165/tumblr_inline_nchifxRiv71qccglw.png"><img alt="image" src="https://66.media.tumblr.com/e9adf69e69a3fd5db065d10a1be7c30c/tumblr_inline_pcew59VdET1qccglw_540.png" data-orig-height="281" data-orig-width="500" data-orig-src="https://66.media.tumblr.com/e8a09785fd4e5116b06fc00b757d3165/tumblr_inline_nchifxRiv71qccglw.png"/></figure></p>
+<h3>Run the app</h3>
+<p>Now that the mobile service is set up and Minecraft is ready to send requests, the last part is to get our app set up and connected to the mobile service. </p>
+<ol><li>Get the source for the app from <a href="https://github.com/yavorg/samples/tree/master/MineCraftTracker">here</a> and open it in Android Studio.</li>
+<li>Download the right libraries <a href="http://aka.ms/Iajk6q">from here</a> and drop them in the lib folder. You&rsquo;ll need to grab both <strong>mobileservices-2.0.1-beta.jar</strong> as well as <strong>notifications-1.0.1.jar</strong>, the other dependencies should get brought down by Gradle when you build your project in Android Studio.</li>
+<li>The last step is to configure the connection information for your mobile service. Copy the file <strong>Secrets.java.example</strong> and rename it to <strong>Secrets.java</strong>. You will then need to copy your mobile service URI and app key from the Azure portal and paste them into that file. You will also need your project ID from the Google APIs Console.</li>
+</ol><p>You should now be good to go! Stepping on the pressure plate should cause a push notification to fire off on the phone. Opening and closing the chest should trigger an update to be sent to the service. Add or remove items and then use the Refresh button in the app to see the content update.</p>
+<p>This quick example is just the start of what you can do with the awesome capabilities provided by Azure Mobile Service. Excited to see what other cool Minecraft hacks you&rsquo;ll put together using these tools!</p>

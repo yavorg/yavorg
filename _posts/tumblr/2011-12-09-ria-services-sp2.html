@@ -1,0 +1,22 @@
+---
+layout: post
+title: RIA Services SP2 RTW released
+date: '2011-12-09T12:13:00-08:00'
+tags:
+- Silverlight
+- WCF RIA Services
+tumblr_url: http://hashtagfail.com/post/13978432034/ria-services-sp2
+---
+<p>We&rsquo;re happy to announce the final release of WCF RIA Services V1 SP2:</p>
+<ul><li><strong><a href="http://go.microsoft.com/fwlink/?LinkId=229318" title="Silverlight 5 Tools">Silverlight 5 tools installer</a></strong></li>
+<li><strong><a href="http://go.microsoft.com/fwlink/?LinkId=215202" title="RIA Services SP2">Standalone RIA SP2 installer</a></strong> </li>
+</ul><p>In this release, we add the following new features:</p>
+<ul><li>Support for Silverlight 5 (the standalone installer linked above also supports Silverlight 4)</li>
+<li>DateTimeOffset support + various bugfixes</li>
+<li><span>Entity Framework Code-First development, using <a href="http://nuget.org/packages/RIAServices.EntityFramework" title="RIAServices.EntityFramework NuGet package">this NuGet package</a></span></li>
+</ul><p class="MsoListParagraph">Known issues include:</p>
+<ul><li><span>Entity Framework 4.1 is required, but version 4.2 isn&rsquo;t supported yet</span></li>
+<li><span>Requires Visual Studio 2010 or SP1. Visual Studio 11 isn&rsquo;t supported yet</span></li>
+<li><span>Work on supporting Universal Providers for improved Windows Azure deployment is ongoing</span></li>
+<li>If you want to create a Silverlight 4 Business Application Template, first create an instance of the Silverlight 5 template, and then use the Silverlight project properties to retarget it to Silverlight 4. You might see some temporary errors (System.Windows.Markup.XamlParseException) in the designer and error window, but rebuilding will make those disappear.</li>
+</ul>

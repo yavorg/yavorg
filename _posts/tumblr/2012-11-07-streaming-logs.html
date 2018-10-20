@@ -1,0 +1,12 @@
+---
+layout: post
+title: no title
+date: '2012-11-07T16:19:23-08:00'
+tags:
+- Windows Azure
+- Node.js
+tumblr_url: http://hashtagfail.com/post/35235392688/streaming-logs
+---
+<iframe src="https://player.vimeo.com/video/50185987?title=0&byline=0&portrait=0&app_id=122963" width="400" height="300" frameborder="0" title="azure-logstreamer demo" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><br/><p>I&rsquo;ve created a small prototype of how <strong>streaming logs in Azure</strong> could work.</p>
+<p>Debugging a running app in the cloud is one of the harder aspects of Azure websites, since you cannot directly connect to the VM where the app is running and look at the logs in real time. Azure already lets you download the logs over HTTP or FTP, but getting all the entries and having to manually diff them makes them impractical for development-time debugging. The ideal experience you want is to be able to directly stream the console output down to a local console window, so you can easily see the entries as they are happening. Heorku and other cloud hosters already allow you to do this, and now you can enable similar functionality on Azure as well!</p>
+<p>Check out the video for a walkthrough, than dive into the project straight on <a href="http://github.com/yavorg/azure-logstreamer">GitHub</a>.</p>

@@ -1,0 +1,23 @@
+---
+layout: post
+title: Azure SDK for Node.js 0.5.3 is out
+date: '2012-02-17T13:16:25-08:00'
+tags:
+- Windows Azure
+- Node.js
+tumblr_url: http://hashtagfail.com/post/17781848569/node-sdk-0-5-3
+---
+<p class="MsoNormal">We just pushed out a small February update (0.5.3) to the <a href="https://github.com/WindowsAzure/azure-sdk-tools">Azure SDK for Node.js</a>, containing the following fixes:</p>
+<ul><li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/81">#81</a>: Start-AzureEmulator errors if there&rsquo;s a space in the service path: </strong>we corrected an issue where the emulator would fail if there was a space in the path to the service</li>
+<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/82">#82</a>: Remove-AzureService prompts for yes/no confirmation:</strong> when you want to remove a service, you will now see this prompt to prevent accidental data loss:
+<pre class="brush: bash">Confirm
+Are you sure you want to remove service "foo"?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help
+(default is "Y"):Y
+</pre>
+</li>
+<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/131">#131</a>: Start-AzureEmulator -Launch fails if run twice on the same web role: </strong>corrected a problem where our attempt to clean up logs was causing the emulator to crash</li>
+<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/138">#138</a>: Publish-AzureService throws ArgumentNullException when no certificates element provided in .cscfg:</strong> this may have affected folks using the Mongo commandlets</li>
+<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/141">#141</a>: Worker role did not allow write access:</strong> the user under which Node was running in worker role did not have sufficient permission to write to disk. This may have surfaced as some modules who need to write to disk (such as stylus) failing.</li>
+</ul><ul></ul><p><strong><a href="http://www.microsoft.com/web/gallery/install.aspx?appid=azurenodepowershell">Here is a one-click install of the new bits.</a></strong></p>
+<p class="MsoNormal">Alongside this, we also released a refresh (0.5.2) of the <a href="https://github.com/WindowsAzure/azure-sdk-for-node/">npm package for Azure</a>, adding support for accessing ServiceBus queues and topics, among other fixes. Read <a href="http://codebetter.com/glennblock/2012/02/14/servicebus-support-in-azure-npm-0-5-2/">Glenn&rsquo;s blog post</a> for more details.</p>

@@ -11,7 +11,7 @@ tumblr_url: http://hashtagfail.com/post/18631640309/ria-sp2-vs11-beta
 <li>Support for the new Metro UI</li>
 <li>Miscellaneous small changes to adapt to changes in project system, msbuild, and the designer.</li>
 </ul><p>However, there are some kinks that you should be aware of&hellip; it is a Beta after all:</p>
-<ul><li>If you try to use the <strong>Data Binding picker from the Properties pane</strong> to bind a property (for example the text in a TextBlock) to a property on a Domain Data Source, you&rsquo;ll see it is not available. We are looking at addressing this issue.<br/><br/><img src="https://66.media.tumblr.com/tumblr_m0a8chKYZH1qccglw.png"/> </li>
+<ul><li>If you try to use the <strong>Data Binding picker from the Properties pane</strong> to bind a property (for example the text in a TextBlock) to a property on a Domain Data Source, you&rsquo;ll see it is not available. We are looking at addressing this issue.<br/><br/><img src="{{ site.baseurl }}/assets/posts/tumblr_m0a8chKYZH1qccglw.png"/> </li>
 <li>Universal Providers have a known issue where <strong>Windows Authentication and Role Providers don&rsquo;t work</strong> as you might expect. If you switch your web app containing your Domain Service to Windows auth, be sure to change this line:<br/><pre class="brush: xml">&lt;roleManager enabled="true" defaultProvider="DefaultRoleProvider"&gt;</pre>
 from &ldquo;DefaultRoleProvider&rdquo; to &ldquo;AspNetWindowsTokenRoleProvider&rdquo;. Having to do this is a limitation that will go away after Beta.</li>
 </ul><p>Please let us know if you encounter any other issues via <a href="http://forums.silverlight.net/53.aspx/1?WCF+RIA+Services">our forum</a>.</p>

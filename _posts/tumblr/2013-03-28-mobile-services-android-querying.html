@@ -4,14 +4,14 @@ title: 'Episode III: Exploring the richness of the Mobile Services Android clien
   query model'
 date: '2013-03-28T00:57:00-07:00'
 tags:
-- Windows Azure Mobile Services
+- Azure Mobile Services
 - Android
 tumblr_url: http://hashtagfail.com/post/46493261719/mobile-services-android-querying
 ---
 <p>In today&rsquo;s post we continue our Android blog series for Mobile Services. Here are the other posts in the series.</p>
-<ul><li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-04-mobile-services-android-typed-untyped">Working with typed and untyped data</a></li>
-<li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-04-mobile-services-android-serialization-gson">Customizing serialization using the gson library</a></li>
-<li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-28-mobile-services-android-querying">Exploring the richness of the query model</a></li>
+<ul><li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-typed-untyped %}">Working with typed and untyped data</a></li>
+<li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-serialization-gson %}">Customizing serialization using the gson library</a></li>
+<li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-28-mobile-services-android-querying %}">Exploring the richness of the query model</a></li>
 <li>Implementing authentication correctly</li>
 <li>Intercepting HTTP traffic for fun and profit</li>
 <li>Unit testing your client code</li>
@@ -69,7 +69,7 @@ tumblr_url: http://hashtagfail.com/post/46493261719/mobile-services-android-quer
 <p>Let&rsquo;s assume we have a few of these instances in a mobile services table. We will also grab a reference to the typed and JSON-based table, so we can show the differences in the query programming model.</p>
 <pre class="brush: java">MobileServiceTable&lt;Droid&gt; table = client.getTable(Droid.class);
 MobileServiceJsonTable untypedTable = client.getTable("droid");</pre>
-<p>If these don&rsquo;t seem familiar, please review the <a href="http://hashtagfail.com/posts/2018/10/19/2013-03-04-mobile-services-android-typed-untyped">first post in my series</a>. </p>
+<p>If these don&rsquo;t seem familiar, please review the <a href="/posts/2013/03/04/mobile-services-android-typed-untyped">first post in my series</a>. </p>
 <h3>Sorting</h3>
 <p>Let&rsquo;s start with sorting, here we show a simple ascending/descending sort using both the typed and JSON-based model.</p>
 <pre class="brush: java">table.orderBy("name", QueryOrder.Ascending).execute(new TableQueryCallback&lt;Droid&gt;() {

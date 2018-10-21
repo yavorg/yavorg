@@ -3,16 +3,16 @@ layout: post
 title: Building portable C# apps with Mobile Services
 date: '2013-07-20T18:37:00-07:00'
 tags:
-- Windows Azure Mobile Services
+- Azure Mobile Services
 - Windows Phone
 tumblr_url: http://hashtagfail.com/post/56006227192/portable-apps-mobile-services-pcl
 ---
-<p>I don&rsquo;t want to be one of those people who&rsquo;s always going on about their ViewModel, but I was pretty pleased with the way I was able to factor the <a href="https://github.com/yavorg/samples/tree/master/SlapChat">sample</a> from my <a href="http://hashtagfail.com/posts/2018/10/19/2013-07-01-build-mobile-services">Build talk</a>, so I thought I would share. My goal was to structure my Windows Phone 8 code in a way so I could reuse as much of it as possible if I decided to build a Windows Phone 7.5 or Windows Store version of the app.</p>
+<p>I don&rsquo;t want to be one of those people who&rsquo;s always going on about their ViewModel, but I was pretty pleased with the way I was able to factor the <a href="https://github.com/yavorg/samples/tree/master/SlapChat">sample</a> from my <a href="{{ site.baseurl }}{% post_url tumblr/2013-07-01-build-mobile-services %}">Build talk</a>, so I thought I would share. My goal was to structure my Windows Phone 8 code in a way so I could reuse as much of it as possible if I decided to build a Windows Phone 7.5 or Windows Store version of the app.</p>
 <p>I mostly followed standard MVVM best practices here, and I assume most of you are familiar with those. I leaned on <a href="http://mvvmlight.codeplex.com/">MvvmLight</a> as my framework of choice. <strong>The strategy here was to try to make all ViewModel and Model code easily portable. This was a natural fit with the <a href="http://msdn.microsoft.com/en-us/library/vstudio/gg597391(v=vs.110).aspx">Portable Class Library</a> (PCL) support introduced in VS 2012. </strong>This is the high-level project structure I devised:</p>
-<p><img alt="image" src="https://66.media.tumblr.com/4c52ea56766070db842e892fa56c0b25/tumblr_inline_mq9dnsDqHD1qz4rgp.png"/></p>
+<p><img src="{{ site.baseurl }}/assets/posts/tumblr_inline_mq9dnsDqHD1qz4rgp.png"/></p>
 <p>A lot of the app chrome is deeply platform-specific, so I needed platform-specific projects for those pieces: <strong>MyApp.Win8</strong> and <strong>MyAppWP8</strong>. The key was to separate the ViewModel and Model code, which can be made portable via their own PCL projects: <strong>MyApp.ViewModel</strong> and <strong>MyApp.Model</strong>. These projects can be referenced from a variety of C# platforms (.NET, Silverlight, Phone, Windows, even Xbox) without any modification, that&rsquo;s the beauty of this model.</p>
 <p>There is one caveat with a PCL project: the way it works is by exposing a sort of lowest-common-denominator .NET surface area that is guaranteed to work across all the different platforms where that library is supposed to work. Clearly, the further back you go by adding more and more legacy platforms to the supported set, the .NET surface area your project can target shrinks. So you have to make a mindful choice given your business need, luckily VS makes that choice very easy for you. Here is what I picked for my PCL projects:</p>
-<p><img alt="image" src="https://66.media.tumblr.com/cdaaedc832397f2c4a3610c8500a8abe/tumblr_inline_mq9e50amuB1qz4rgp.png"/></p>
+<p><img alt="image" src="{{ site.baseurl }}/assets/posts/tumblr_inline_mq9e50amuB1qz4rgp.png"/></p>
 <p>Let&rsquo;s talk about the two PCL projects in a little bit more detail.</p>
 <h3>The ViewModel project</h3>
 <p>This part is not specific to Mobile Services in any way, and has been covered well already by <a href="http://blog.tattoocoder.com/2013/01/portable-mvvm-light-move-your-view.html">other folks</a>. The key thing to realize is that the ViewModel code needs to depend on the MvvmLight framework. So someone needed to design a subset of MvvmLight that can be referenced from a PCL project. Luckily Laurent has already done the hard work here, so just reference the <a href="https://www.nuget.org/packages/Portable.MvvmLightLibs/">Portable.MvvmLightLibs</a> project from NuGet, and you&rsquo;re done.</p>

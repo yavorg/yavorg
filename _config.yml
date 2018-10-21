@@ -19,7 +19,6 @@ description: >- # this means to ignore newlines until "baseurl:"
   Welcome to Yavor Georgiev's blog. Yavor is a Product Manager at goextend.io, a startup 
   that makes in-product extensibility and integrations painless for SaaS developers. 
   Previously at Hulu and Microsoft Azure. 
-baseurl: "/" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: YavorGeorgiev
 github_username:  yavorg

@@ -4,14 +4,14 @@ title: 'Episode II: Customizing serialization using the gson library in the Mobi
   Services Android client'
 date: '2013-03-04T22:57:00-08:00'
 tags:
-- Windows Azure Mobile Services
+- Azure Mobile Services
 - Android
 tumblr_url: http://hashtagfail.com/post/44606137082/mobile-services-android-serialization-gson
 ---
 <p>Welcome to part two of my blog series about the new Mobile Services Android client SDK. Here are the other posts in the series:</p>
-<ul><li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-04-mobile-services-android-typed-untyped">Working with typed and untyped data</a></li>
-<li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-04-mobile-services-android-serialization-gson">Customizing serialization using the gson library</a></li>
-<li><a href="http://hashtagfail.com/posts/2018/10/19/2013-03-28-mobile-services-android-querying">Exploring the richness of the query model</a></li>
+<ul><li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-typed-untyped %}">Working with typed and untyped data</a></li>
+<li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-serialization-gson %}">Customizing serialization using the gson library</a></li>
+<li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-28-mobile-services-android-querying %}">Exploring the richness of the query model</a></li>
 <li>Implementing authentication correctly</li>
 <li>Intercepting HTTP traffic for fun and profit</li>
 <li>Unit testing your client code</li>
@@ -153,4 +153,4 @@ JsonSerializer&lt;Collection&lt;E&gt;&gt;, JsonDeserializer&lt;Collection&lt;E&g
 <pre class="brush: java">client.registerSerializer(ArrayList.class, new CollectionSerializer&lt;Object&gt;());
 </pre>
 <p>All that does is add it to your <strong>GsonBuilder</strong> instance using the identically named method.</p>
-<p>That&rsquo;s it for today, in the <a href="http://hashtagfail.com/posts/2018/10/19/2013-03-28-mobile-services-android-querying">next post we&rsquo;ll dive into the query model</a>.</p>
+<p>That&rsquo;s it for today, in the <a href="{{ site.baseurl }}{% post_url tumblr/2013-03-28-mobile-services-android-querying %}">next post we&rsquo;ll dive into the query model</a>.</p>

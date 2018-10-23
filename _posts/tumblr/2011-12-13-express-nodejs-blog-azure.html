@@ -24,7 +24,7 @@ tumblr_url: http://hashtagfail.com/post/14183649394/express-nodejs-blog-azure
 <li>Modify the <strong>ExpressBlog\WebRole\Web.cloud.config</strong> file where indicated to include the storage settings.</li>
 <li>You are now ready to publish. Anywhere inside the <strong>ExpressBlog</strong> folder, run the following, making sure you use a unique service name:<br/><pre class="brush: bash">Publish-AzureService -Name uniqueServiceName</pre>
 </li>
-</ol><p>You&rsquo;re all done!<img alt="A Node/Express blog on Azure" src="{{ site.baseurl }}/assets/posts/tumblr_lw60nrIUBC1qccglw.png"/></p>
+</ol><p>You&rsquo;re all done!<img alt="A Node/Express blog on Azure" src="{{ site.baseurl }}/assets/posts/tumblr/tumblr_lw60nrIUBC1qccglw.png"/></p>
 <p>Unfortunately things don&rsquo;t always go according to plan, so in case you get an Internal Server Error or anything else goes wrong after you deploy to the cloud, use this simple trick to debug.</p>
 <ol><li>Inside the <strong>Web.cloud.config</strong> file, enable logging:<br/><pre class="brush: xml">&lt;iisnode loggingEnabled="true" /&gt;</pre>
 </li>

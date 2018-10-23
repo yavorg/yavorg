@@ -18,17 +18,17 @@ tumblr_url: http://hashtagfail.com/post/38488024433/mobile-services-scheduler
 </ul></div>
 </blockquote>
 <p>Here I want to give a more detailed demonstration of the feature and celebrate another winter tradition: skiing. Let’s walk through a simple scenario where we will use a scheduled job to aggregate and analyze tweets related to ski conditions near Seattle. The source code is available <a href="https://github.com/yavorg/samples/tree/master/SeattleSkiBuddy">here</a>.</p>
-<p><img alt="Finished SeattleSkiBuddy app screenshot" src="{{ site.baseurl }}/assets/posts/tumblr_mf1kp5P7jh1qccglw.png"/></p>
+<p><img alt="Finished SeattleSkiBuddy app screenshot" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-1.png"/></p>
 <p>Let’s assume we already have a mobile service called <strong>skibuddy</strong>. We can navigate to the new Scheduler tab in the Windows Azure portal to create a scheduled job. </p>
-<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1jubdhS71qccglw.png"/></p>
+<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-2.png"/></p>
 <p>Let’s go ahead and create a job called <strong>getUpdates</strong>. We will use the default interval of <strong>15 minutes</strong> that is already selected in the dialog.</p>
-<p><img alt="Create new scheduled job dialog" src="{{ site.baseurl }}/assets/posts/tumblr_mf1jv6WNM71qccglw.png"/></p>
+<p><img alt="Create new scheduled job dialog" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-3.png"/></p>
 <p>Once the job is created we will now see it in the summary view. You will note that the job starts off as disabled, so let’s click the job name to add our script.</p>
-<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1jvzTgOE1qccglw.png"/></p>
+<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-4.png"/></p>
 <p>On the job details page, we see information about our job and also we also have an opportunity to change the schedule. For now let’s leave everything as-is and navigate over to the <strong>Script</strong> tab.</p>
-<p><img alt="Scheduled job detail page" src="{{ site.baseurl }}/assets/posts/tumblr_mf1jwoTx0h1qccglw.png"/></p>
+<p><img alt="Scheduled job detail page" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-5.png"/></p>
 <p>Here we see the script editor window that has been pre-populated with a default empty script.</p>
-<p><img alt="Scheduled job detail page with empty script" src="{{ site.baseurl }}/assets/posts/tumblr_mf1jyhHdDW1qccglw.png"/></p>
+<p><img alt="Scheduled job detail page with empty script" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-6.png"/></p>
 <p>Let’s replace the default script with the following one.</p>
 <pre class="brush: javascript">var updatesTable = tables.getTable('updates');
 var request = require('request');
@@ -90,17 +90,17 @@ function filterOutTweet(tweet){
 <li>Once we collect the tweets we process each tweet to remove retweets and replies. You can imagine this logic being a lot more complex and adding deeper analysis.</li>
 <li>Lastly, we store the results in a table called <strong>updates</strong>, which we have pre-created. You can easily create the table yourself by going back to the main page for your mobile service in the portal and using the <strong>Data</strong> tab. You don’t have to use tables in your scheduled job. You could just as easily send a push notification to users of your app alerting them of new updates from Twitter. For more information, see <a href="https://www.windowsazure.com/en-us/develop/mobile/tutorials/push-notifications-to-users-dotnet/" title="Push notification tutorial">this tutorial</a>.</li>
 </ul><p>Now that we&rsquo;ve entered the script, we can press the <strong>Save</strong> button and then select <strong>Run once</strong> to execute a trial run. The Run once functionality lets you easily test out your job script before you enable the job for recurring execution.</p>
-<p><img alt="Scheduled job detail page with finished script" src="{{ site.baseurl }}/assets/posts/tumblr_mf1k8u44ab1qccglw.png"/></p>
+<p><img alt="Scheduled job detail page with finished script" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-7.png"/></p>
 <p>Once you run the script, head over to the <strong>Data</strong> tab on the main page for your mobile service and select the <strong>updates</strong> table.</p>
-<p><img alt="Data tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1kbo4mnH1qccglw.png"/></p>
+<p><img alt="Data tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-8.png"/></p>
 <p>You should see it has now been populated with the tweet data we fetched in our job. Our mobile clients can now read the data from that table and display it to their users.</p>
 <p>Next, open the <strong>Logs</strong> tab from the main portal page for your mobile service. </p>
-<p><img alt="Logs tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1kf5F1Tp1qccglw.png"/></p>
+<p><img alt="Logs tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-9.png"/></p>
 <p>You should see an entry generated by our scheduled job script. Any calls to the <strong>console</strong> API from your job script and all errors generated by that script will be logged here. This makes the <strong>Logs</strong> table very useful while debugging and monitoring your scheduled job.</p>
 <p>Now that we have made sure the job is working as expected, we are ready to enable it. We can go back to the <strong>Scheduler</strong> tab, select our job, and click <strong>Enable</strong>.</p>
-<div><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1kh2mLAN1qccglw.png"/></div>
+<div><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-10.png"/></div>
 <p>Once the job has run for a while, we can check the <strong>updates</strong> table and also the logs to ensure it is executing. If we return to the <strong>Scheduler</strong> tab, it conveniently provides last run and next run data for the job.</p>
-<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr_mf1kimoFsr1qccglw.png"/></p>
+<p><img alt="Scheduler tab in Azure portal" src="{{ site.baseurl }}/assets/posts/tumblr/mobile-services-scheduler-11.png"/></p>
 <p>This was a quick overview of the new scheduled jobs feature in Mobile Services. I&rsquo;ll skip the rest of the app implementation as it has been covered <a href="https://www.windowsazure.com/en-us/develop/mobile/tutorials/get-started-with-data-dotnet/">many times</a>, you can find the source at the GitHub link above. </p>
 <p>Here are some extra details on the feature that we didn’t get to cover:</p>
 <ul><li>If you select <strong>On demand</strong> for the job schedule, the job will never automatically run and will always stay disabled. You can manually run the job via the <strong>Run once</strong> button. This is useful for implementing one-time setup and cleanup scripts for your service, especially in development.</li>

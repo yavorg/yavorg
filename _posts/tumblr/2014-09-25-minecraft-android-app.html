@@ -11,7 +11,7 @@ tumblr_url: http://hashtagfail.com/post/98432652260/minecraft-android-app
 ---
 <p><iframe frameborder="0" height="281" src="//player.vimeo.com/video/107209587?title=0&amp;byline=0&amp;portrait=0" width="500"></iframe></p>
 <p>For some time, some coworkers and I have wondered if it would be possible to get Minecraft talking to Azure. The recent news about Microsoft and Minecraft gave us some extra incentive to try out out&hellip; so we <strong>decided to build a companion mobile app using Azure Mobile Services</strong>. The app sends me a push notification if someone enters my house in Minecraft and also lets me check what items I have in my in-game inventory. </p>
-<p><img src="{{ site.baseurl }}/assets/posts/tumblr_inline_pcew59BdiV1qccglw_540.png" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/tumblr/minecraft-tracker-app.png" /></p>
 <p>The basic design is as follows:</p>
 <ol><li>Certain <strong>objects in Minecraft are connected to computers</strong> in the game. This includes things like a pressure plate and a chest.</li>
 <li>The <strong>computers send HTTP requests to a mobile service,</strong> passing in some simple payloads. This is implemented via some simple programs running on the computers.</li>
@@ -36,7 +36,7 @@ tumblr_url: http://hashtagfail.com/post/98432652260/minecraft-android-app
 <li>Now that the script is downloaded locally, you can run it easily by typing it in (with the above example, just type <strong>scriptName</strong>). If you need to stop the program, hold down Ctrl + T.</li>
 <li>Make sure both scripts are downloaded and running on both computers.</li>
 </ol><p>When done it will look something like this:</p>
-<p><img src="{{ site.baseurl }}/assets/posts/tumblr_inline_pcew59VdET1qccglw_540.png" /></p>
+<p><img src="{{ site.baseurl }}/assets/posts/tumblr/minecraft-setup.png" /></p>
 <h3>Run the app</h3>
 <p>Now that the mobile service is set up and Minecraft is ready to send requests, the last part is to get our app set up and connected to the mobile service. </p>
 <ol><li>Get the source for the app from <a href="https://github.com/yavorg/samples/tree/master/MineCraftTracker">here</a> and open it in Android Studio.</li>

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: EF development-time initializer for your .NET-based mobile service
 date: '2014-05-12T18:06:00-07:00'
 tags:
@@ -8,8 +7,7 @@ tumblr_url: http://hashtagfail.com/post/85578106830/mobile-services-net-ef-initi
 ---
 <p><strong><em>Update: look at that&hellip; based on your feedback we&rsquo;ve baked this right into the product (starting with version 1.0.342 of our NuGet package). Check out <a href="http://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-how-to-use-code-first-migrations/">this tutorial</a> for instructions on how to use the new initializers, and please disregard the code below. What&rsquo;s in the box works better!</em></strong></p>
 <p>A few folks have encountered an issue while developing a .NET-based mobile service using our VS template or portal quickstart. If you publish your mobile service to the cloud and then make some changes to the model and re-publish, the EF initializer will fail complaining that it doesn&rsquo;t have sufficient permissions. The error might look like so in the Logs tab of the portal:</p>
-<pre class="brush:bash">Exception=System.InvalidOperationException: This operation requires a connection to the 'master' database. Unable to create a connection to the 'master' database because the original database connection has been opened and credentials have been removed from the connection string. Supply an unopened connection. ---&gt; System.Data.SqlClient.SqlException: Login failed for user 'zXCBHhDWhTLogin'.
-</pre>
+<pre><code>Exception=System.InvalidOperationException: This operation requires a connection to the 'master' database. Unable to create a connection to the 'master' database because the original database connection has been opened and credentials have been removed from the connection string. Supply an unopened connection. ---&gt; System.Data.SqlClient.SqlException: Login failed for user 'zXCBHhDWhTLogin'.</code></pre>
 <p>This is the case because by default we use the <a href="http://msdn.microsoft.com/en-us/library/gg679604(v=vs.113).aspx">DropCreateDatabaseIfModelChanges</a> initializer, but the user under which your mobile service accesses your Azure SQL database doesn&rsquo;t have the permission to drop the database.</p>
 <p>To work around that we have developed an alternative initializer that does largely the same thing, but works using the permission set we already have. <strong>Please exercise caution: this initializer will delete your data. It is intended to be used during development while you are experimenting with your model and database schema.</strong></p>
 <p>Here is the example: instead of dropping the whole database, it just drops the tables used by your mobile service:</p>

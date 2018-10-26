@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Debugging SGEN LoaderExceptions errors
 date: '2011-05-06T16:33:00-07:00'
 tags:
@@ -7,7 +6,7 @@ tags:
 tumblr_url: http://hashtagfail.com/post/5255977780/sgen-loaderexceptions-error
 ---
 <p>Recently we were contacted by a customer who was building a Release version of their assembly in Visual Studio and encountered the following error:</p>
-<p><img src="{{ site.baseurl }}/assets/posts/tumblr/tumblr_lkspj38nwO1qccglw.png" alt="SGEN error in Visual Studio"/></p>
+<p><img src="{{ site.baseurl }}/images/posts/tumblr/tumblr_lkspj38nwO1qccglw.png" alt="SGEN error in Visual Studio"/></p>
 <p>You could get the same error if you attempt to run the sgen.exe tool on the built assembly:</p>
 <blockquote>
 <p>Microsoft &reg; Xml Serialization support utility<br/>[Microsoft &reg; .NET Framework, Version 4.0.30319.1]<br/>Copyright &copy; Microsoft Corporation. All rights reserved.<br/>Error: Unable to load one or more of the requested types. Retrieve the LoaderExceptions property for more information.</p>
@@ -24,6 +23,6 @@ tumblr_url: http://hashtagfail.com/post/5255977780/sgen-loaderexceptions-error
 </ul></li>
 <li>Configure the debugger to break on all exceptions by going to the <strong>Debug</strong> menu and selecting <strong>Exceptions</strong> and then checking <strong>Thrown</strong> next to <strong>Common Language Runtime Exceptions</strong></li>
 <li>Also ensure that if you go to <strong>Tools</strong> &gt; <strong>Options</strong> &gt; <strong>Debugging</strong> that <strong>Enable Just My Code</strong> is unchecked.</li>
-<li>Then you are ready to press <strong>F5</strong>. If everything works correctly, Vistual Studio will break at an exception. Right click on <strong>sgen.exe </strong>anywhere in the <strong>Call Stack </strong>window and load the symbols from the <strong>Microsoft Symbol Servers</strong>.<br/> <img src="{{ site.baseurl }}/assets/posts/tumblr/tumblr_lksrk1Zm0P1qccglw.png" alt="Loading sgen.exe symbols"/></li>
-<li>Once the symbols have loaded, press F5 until you get to a <strong>ReflectionTypeLoadException</strong>. At that point you can select <strong>View Details</strong> and inspect the <strong>LoaderExceptions</strong> property yourself. This property will usually reveal the real source of the problem:<br/><img src="{{ site.baseurl }}/assets/posts/tumblr/tumblr_lksru3zrry1qccglw.png" alt="ReflectionTypeLoadException details"/></li>
+<li>Then you are ready to press <strong>F5</strong>. If everything works correctly, Vistual Studio will break at an exception. Right click on <strong>sgen.exe </strong>anywhere in the <strong>Call Stack </strong>window and load the symbols from the <strong>Microsoft Symbol Servers</strong>.<br/> <img src="{{ site.baseurl }}/images/posts/tumblr/tumblr_lksrk1Zm0P1qccglw.png" alt="Loading sgen.exe symbols"/></li>
+<li>Once the symbols have loaded, press F5 until you get to a <strong>ReflectionTypeLoadException</strong>. At that point you can select <strong>View Details</strong> and inspect the <strong>LoaderExceptions</strong> property yourself. This property will usually reveal the real source of the problem:<br/><img src="{{ site.baseurl }}/images/posts/tumblr/tumblr_lksru3zrry1qccglw.png" alt="ReflectionTypeLoadException details"/></li>
 </ol><p>Hope this is useful!</p>

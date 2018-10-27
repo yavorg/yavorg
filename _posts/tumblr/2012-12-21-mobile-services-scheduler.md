@@ -8,14 +8,13 @@ tumblr_url: http://hashtagfail.com/post/38488024433/mobile-services-scheduler
 <p><strong><em>Update:</em></strong><em> Corrected the server script code snippet.<br/><strong>Update 2:</strong>The example below will unfortunately no longer work due to Twitter API changes&hellip; I need to update it. In the mean time, our official documentation shows a very similar scenario, so <a href="http://www.windowsazure.com/en-us/develop/mobile/tutorials/schedule-backend-tasks/">check that out</a>.<br/></em></p>
 <p>As <a href="http://weblogs.asp.net/scottgu/archive/2012/12/21/great-updates-to-windows-azure-mobile-services-web-sites-sql-data-sync-acs-media-more.aspx">Scott announced earlier today</a>, Mobile Services is celebrating the holiday season by bringing you some cool new features, including the ability to execute scheduled jobs (or &ldquo;cron jobs&rdquo;). </p>
 <blockquote>
-<div>
-<p>Windows Azure Mobile Services now supports the ability to easily schedule background jobs (aka CRON jobs) that execute on a pre-set timer interval, and which can run independently of a device accessing the service (ensuring that you don’t block or slow-down any requests from your users).  This job scheduler functionality allows you to perform a variety of useful scenarios without having to create or manage a separate VM.  Some of the scenarios you can enable with it include:</p>
+<p>&quot;Windows Azure Mobile Services now supports the ability to easily schedule background jobs (aka CRON jobs) that execute on a pre-set timer interval, and which can run independently of a device accessing the service (ensuring that you don’t block or slow-down any requests from your users).  This job scheduler functionality allows you to perform a variety of useful scenarios without having to create or manage a separate VM.&quot;</p></blockquote>
+<p>Some of the scenarios you can enable with it include:</p>
 <ul><li>Periodically purging old/duplicate data from your tables.</li>
 <li>Periodically querying and aggregating data from external web service (tweets, RSS entries, location information) and cache it in your tables for subsequent use.</li>
 <li>Periodically processing/resizing images submitted by users of your service.</li>
 <li>Scheduling the sending of push notifications or SMS messages to your customers to ensure they arrive at the right time of the day.</li>
-</ul></div>
-</blockquote>
+</ul>
 <p>Here I want to give a more detailed demonstration of the feature and celebrate another winter tradition: skiing. Let’s walk through a simple scenario where we will use a scheduled job to aggregate and analyze tweets related to ski conditions near Seattle. The source code is available <a href="https://github.com/yavorg/samples/tree/master/SeattleSkiBuddy">here</a>.</p>
 <p><img alt="Finished SeattleSkiBuddy app screenshot" src="{{ site.baseurl }}/images/posts/tumblr/mobile-services-scheduler-1.png"/></p>
 <p>Let’s assume we already have a mobile service called <strong>skibuddy</strong>. We can navigate to the new Scheduler tab in the Windows Azure portal to create a scheduled job. </p>
@@ -29,7 +28,8 @@ tumblr_url: http://hashtagfail.com/post/38488024433/mobile-services-scheduler
 <p>Here we see the script editor window that has been pre-populated with a default empty script.</p>
 <p><img alt="Scheduled job detail page with empty script" src="{{ site.baseurl }}/images/posts/tumblr/mobile-services-scheduler-6.png"/></p>
 <p>Let’s replace the default script with the following one.</p>
-<pre class="brush: javascript">var updatesTable = tables.getTable('updates');
+~~~ javascript
+var updatesTable = tables.getTable('updates');
 var request = require('request');
 
 function getUpdates() {   
@@ -83,7 +83,7 @@ function filterOutTweet(tweet){
     // Remove retweets and replies
     return (tweet.text.indexOf('RT') === 0 || tweet.to_user_id);
 }
-</pre>
+~~~
 <p>Here is what the script does:</p>
 <ul><li>First, the script goes out to the Twitter API and collects tweets from Seattle’s geographical area. Because we don’t want to get the same tweets over again, we check if a given tweet has already been fetched and only ask Twitter for newer tweets.</li>
 <li>Once we collect the tweets we process each tweet to remove retweets and replies. You can imagine this logic being a lot more complex and adding deeper analysis.</li>

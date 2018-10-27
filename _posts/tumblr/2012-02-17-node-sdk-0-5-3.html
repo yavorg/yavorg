@@ -6,15 +6,9 @@ tags:
 - Node.js
 tumblr_url: http://hashtagfail.com/post/17781848569/node-sdk-0-5-3
 ---
-<p class="MsoNormal">We just pushed out a small February update (0.5.3) to the <a href="https://github.com/WindowsAzure/azure-sdk-tools">Azure SDK for Node.js</a>, containing the following fixes:</p>
+<p">We just pushed out a small February update (0.5.3) to the <a href="https://github.com/WindowsAzure/azure-sdk-tools">Azure SDK for Node.js</a>, containing the following fixes:</p>
 <ul><li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/81">#81</a>: Start-AzureEmulator errors if there&rsquo;s a space in the service path: </strong>we corrected an issue where the emulator would fail if there was a space in the path to the service</li>
-<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/82">#82</a>: Remove-AzureService prompts for yes/no confirmation:</strong> when you want to remove a service, you will now see this prompt to prevent accidental data loss:
-<pre class="brush: bash">Confirm
-Are you sure you want to remove service "foo"?
-[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help
-(default is "Y"):Y
-</pre>
-</li>
+<li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/82">#82</a>: Remove-AzureService prompts for yes/no confirmation:</strong> when you want to remove a service, you will now see this prompt to prevent accidental data loss: <strong>Confirm: Are you sure you want to remove service "foo"?</strong></li>
 <li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/131">#131</a>: Start-AzureEmulator -Launch fails if run twice on the same web role: </strong>corrected a problem where our attempt to clean up logs was causing the emulator to crash</li>
 <li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/138">#138</a>: Publish-AzureService throws ArgumentNullException when no certificates element provided in .cscfg:</strong> this may have affected folks using the Mongo commandlets</li>
 <li><strong><a href="https://github.com/WindowsAzure/azure-sdk-tools/issues/141">#141</a>: Worker role did not allow write access:</strong> the user under which Node was running in worker role did not have sufficient permission to write to disk. This may have surfaced as some modules who need to write to disk (such as stylus) failing.</li>

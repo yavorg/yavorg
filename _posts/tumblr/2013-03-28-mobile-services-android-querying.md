@@ -17,7 +17,8 @@ tumblr_url: http://hashtagfail.com/post/46493261719/mobile-services-android-quer
 <li>Advanced push scenarios</li>
 </ul><p>Today we will talk about the query model in the Android client. In our C# client we were lucky to be able to lean on LINQ, but after some research we found that there is no out-of-the-box equivalent in the Android platform. I&rsquo;m glad to stand corrected here: please let me know in the comments if we missed something.</p>
 <p>Given that, we decided to implement our own fluent query API that supports the same richness that you get with LINQ, so it deserves a thorough writeup. We&rsquo;ll assume we&rsquo;re working with our same reference type we used in our last tutorial, but we&rsquo;ve added a field or two to make things more interesting to query against:</p>
-<pre class="brush: java">public class Droid {
+~~~ java
+public class Droid {
     
     @com.google.gson.annotations.SerializedName("id")
     private Integer mId;
@@ -64,14 +65,17 @@ tumblr_url: http://hashtagfail.com/post/46493261719/mobile-services-android-quer
     }
 
 }
-</pre>
+~~~
 <p>Let&rsquo;s assume we have a few of these instances in a mobile services table. We will also grab a reference to the typed and JSON-based table, so we can show the differences in the query programming model.</p>
-<pre class="brush: java">MobileServiceTable&lt;Droid&gt; table = client.getTable(Droid.class);
-MobileServiceJsonTable untypedTable = client.getTable("droid");</pre>
+~~~ java
+MobileServiceTable&lt;Droid&gt; table = client.getTable(Droid.class);
+MobileServiceJsonTable untypedTable = client.getTable("droid");
+~~~
 <p>If these don&rsquo;t seem familiar, please review the <a href="/posts/2013/03/04/mobile-services-android-typed-untyped">first post in my series</a>. </p>
 <h3>Sorting</h3>
 <p>Let&rsquo;s start with sorting, here we show a simple ascending/descending sort using both the typed and JSON-based model.</p>
-<pre class="brush: java">table.orderBy("name", QueryOrder.Ascending).execute(new TableQueryCallback&lt;Droid&gt;() {
+~~~ java
+table.orderBy("name", QueryOrder.Ascending).execute(new TableQueryCallback&lt;Droid&gt;() {
     public void onCompleted(List&lt;Droid&gt; result, int count, Exception exception,
             ServiceFilterResponse response) {
         if(exception == null){
@@ -94,20 +98,24 @@ untypedTable.orderBy("name", QueryOrder.Descending).execute(new TableJsonQueryCa
         }
     }
 });
-</pre>
+~~~
 <p>Note that the type returned by <strong>orderBy</strong> is <strong>MobileServiceQuery&lt;T&gt;</strong>. That is the entry point into this fluent query model. By adding do that query, you could compose sorting, paging, and filtering in any arbitrary order, as we will see further down. To terminate the query, just use the <strong>execute</strong> method. You will notice that the query stays constant regardless of whether you used the typed or JSON model, the only thing that changes is whether the execute method gets back a TableQueryCallback (typed) or TableJsonQueryCallback (JSON). So all the examples that follow will work in either case.</p>
 <h3>Paging</h3>
 <p>Paging is also simple:</p>
-<pre class="brush: java">table.top(10).skip(10).execute(/* callback */ );</pre>
+~~~ java
+table.top(10).skip(10).execute(/* callback */ );
+~~~
 <p>You can easily compose this with sorting (or filtering as we will see below):</p>
-<pre class="brush: java">table.top(10).skip(10).orderBy("name", QueryOrder.Ascending)
+~~~ java
+table.top(10).skip(10).orderBy("name", QueryOrder.Ascending)
     .execute(/* callback */);
-</pre>
+~~~
 <h3>Filtering</h3>
 <p>This is by far most interesting part of the model. To build an filter expression you have to somehow get a <strong>MobileServiceQuery&lt;T&gt;</strong> instance from the table you&rsquo;re about to query, so you can start tacking predicates onto it. We already saw that the <strong>top</strong>, <strong>skip</strong>, and <strong>orderBy</strong> methods already provide that entry point. If you don&rsquo;t want to bother with sorting and paging, we provide another &ldquo;vanilla&rdquo; entry point into the model, simply by calling <strong>where</strong>. You can use either of these to start building a filter. In the examples below I&rsquo;ll simply show how to build the query part, it&rsquo;s your job to remember to tack on <strong>execute</strong> at the end.</p>
-<p><strong>Comparators</strong></p>
+<h4>Comparators</h4>
 <p>Consider the following examples for some basic comparison operators to fetch droid objects from our table given their number of legs.</p>
-<pre class="brush: java">// droid.numberOfLegs &gt; 3
+~~~ java
+// droid.numberOfLegs &gt; 3
 table.where().field("numberOfLegs").gt(3);
 
 // droid.numberOfLegs &gt;= 3
@@ -124,14 +132,16 @@ table.where().field("numberOfLegs").eq(3);
 
 // droid.numberOfLegs !== 3
 table.where().field("numberOfLegs").ne(3);
-</pre>
+~~~
 <p>You&rsquo;ll note the use of the <strong>field</strong> method to pick the property on the server that we want to test against. One interesting case that comes up here is how to test if a value is set on the server (is not undefined). This can be a little awkward:</p>
-<pre class="brush: java">// droid.numberOfLegs === undefined
+~~~ java
+// droid.numberOfLegs === undefined
 table.where().field("numberOfLegs").ne((Number)null);
-</pre>
-<p><strong>Values</strong></p>
+~~~
+<h4>Values</h4>
 <p>You might get curious about what are the kinds of values that you can use on the right-hand side of your operators. You will notice that all of the above operators take a <strong>Number, boolean, String, </strong>or <strong>Date</strong>. Each of these has its own specific characteristics, let&rsquo;s look at <strong>Date</strong> first.</p>
-<pre class="brush: java">// droid.manufactureDate == new Date(Date.UTC(2210, 6, 30));
+~~~ java
+// droid.manufactureDate == new Date(Date.UTC(2210, 6, 30));
 table.where().field("manufactureDate").eq(getUTCDate(2210, 6, 30, 0, 0, 0);
 
 private static Date getUTCDate(int year, int month, int day, int hour, int minute, int second) {
@@ -142,10 +152,11 @@ private static Date getUTCDate(int year, int month, int day, int hour, int minut
 
     return calendar.getTime();
 }
-</pre>
+~~~
 <p>Note that it is no so straightforward to work with UTC dates in Android, so the above example provides a convenience method to do that.</p>
 <p>This is great if you want to compare the whole date, but what if you want to compare individual parts of the date (year, month, day). We have a solution for that as well:</p>
-<pre class="brush: java">// droid.manufactureDate.getUTCFullYear() === 2210
+~~~ java
+// droid.manufactureDate.getUTCFullYear() === 2210
 table.where().year(field("manufactureDate")).eq(2210); 
 
 // droid.manufactureDate.getUTCMonth() === 6
@@ -162,10 +173,11 @@ table.where().minute(field("manufactureDate")).eq(15);
 
 // droid.manufactureDate.getUTCSeconds() === 11
 table.where().second(field("manufactureDate")).eq(11);
-</pre>
+~~~
 <p>One thing to remember here is that these are server queries. What&rsquo;s actually happening under the covers is that the left-hand and right-hand side of the query are being serialized on the wire and executed on the server. Just in case you were wondering why you can&rsquo;t simply express this as a function: we need to have a way to easily parse the expression and send it to the server.</p>
 <p>Next let&rsquo;s look at <strong>Number</strong>. There are a few interesting things we may want to do to the left-hand side on the server: addition, subtraction, multiplication, division, modulus, as well as things like floor, celiling, and rounding for floats.</p>
-<pre class="brush: java">// droid.numberOfLegs + 2 === 18
+~~~ java
+// droid.numberOfLegs + 2 === 18
 table.where().field("numberOfLegs").add(2).eq(18);
 
 // droid.numberOfLegs - 2 === 16
@@ -188,9 +200,10 @@ table.where().ceiling(field("weight")).gt(10);
 
 // Math.round(droid.weight) &gt; 5
 table.where().round(field("weight")).gt(5);
-</pre>
+~~~
 <p>Lastly let&rsquo;s look at the things we can do with <strong>String</strong> on the server:</p>
-<pre class="brush: java">// droid.name.indexOf("c3") === 0
+~~~ java
+// droid.name.indexOf("c3") === 0
 table.where().startsWith("name", "c3");
 
 // showing how to do this in JavaScript is counterproductive in this case
@@ -225,11 +238,12 @@ table.where().trim("name").eq("c3po");
 
 // droid.name.length === 4
 table.where().length("name").eq(4);
-</pre>
+~~~
 <p>As you play around with these APIs you&rsquo;ll notice that all of them take not just <strong>String</strong> types, but you can also specify <strong>field(&ldquo;name&rdquo;)</strong> and <strong>val(5)</strong>. This is to enable you to interchange client and server values in your query for maximum flexibility. For example, if you want to check if one server column is a substring of another, simply use <strong>subStringOf(field(&ldquo;column1&rdquo;), field(&ldquo;column2&rdquo;))</strong>. Supercool!</p>
-<p><strong>Logical operators</strong></p>
+<h4>Logical operators</h4>
 <p>We&rsquo;ve shown how to do comparisons, now let&rsquo;s look at how we can string those comparisons together into logical expressions. Here are some simple examples of and, or, and not.</p>
-<pre class="brush: java">// droid.numberOfLegs &lt; 3 &amp;&amp; droid.numberOfWheels &gt; 3
+~~~ java
+// droid.numberOfLegs &lt; 3 &amp;&amp; droid.numberOfWheels &gt; 3
 table.where().field("numberOfLegs").lt(3).and().field("numberOfWheels").gt(3);
 
 // droid.numberOfLegs &lt; 3 || droid.numberOfWheels &gt; 3
@@ -237,27 +251,30 @@ table.where().field("numberOfLegs").lt(3).or().field("numberOfWheels").gt(3);
 
 // droid.numberOfLegs !== 3
 table.where().not().field("numberOfLegs").eq(3);
-</pre>
+~~~
 <p>These are great simple cases, but what if we want to support grouping (nesting) of the logical operators? For example if we want to select any droids that are named &ldquo;c3po&rdquo; or are similarly humanoid and have two legs and no wheels. Here we go:</p>
-<pre class="brush: java">// droid.name === "c3po" || 
+~~~ java
+// droid.name === "c3po" || 
 // (droid.numberOfLegs === 2 &amp;&amp; droid.numberOfWheels === 0)
 table.where().field("name").eq("c3po")
     .or(field("numberOfLegs").eq(2).and().field("numberOfWheels").eq(0));
-</pre>
+~~~
 <p>What you see in this example is that the logical operators can also take parameters as a way to do grouping. Neat!</p>
 <h3>Projection</h3>
 <p>Last but not least, let&rsquo;s talk about projection. There are two interesting scenarios here:</p>
 <ol><li>Fetch only selected properties of a large object from the server</li>
 <li>Deserialize your server object into a different type (for example a derived type)</li>
 </ol><p>We can implement the first case simply by using the <strong>select</strong> method as part of our query:</p>
-<pre class="brush: java">// Without a query
+~~~ java
+// Without a query
 table.select("name", "weight").execute(/* callback */);
 
 // As part of a query
 table.where().startsWith("name", "c").select("name", "numberOfLegs").execute(/* callback */);
-</pre>
+~~~
 <p>Here is how to do the second case. Imagine we have a subclass of <strong>Droid</strong> called <strong>ProtocolDroid</strong> which contains only a subset of the properties we want to fetch:</p>
-<pre class="brush: java">MobileServiceTable subclassedTable = client.getTable("droid", ProtocolDroid.class);
+~~~ java
+MobileServiceTable subclassedTable = client.getTable("droid", ProtocolDroid.class);
 subclassedTable.select("name", "numberOfLegs").execute(/* callback */);
-</pre>
+~~~
 <p>This writes up today&rsquo;s monster post! In the next post&hellip; auth.</p>

@@ -16,23 +16,26 @@ tumblr_url: http://hashtagfail.com/post/1000967093/wcf-routing-ria-services
 <p>With this disclaimer out of the way, here is how I got RIA Services working with the WCF content-based router.</p>
 <h3>First hurdle: binary-encoded POX</h3>
 <p>In order to offer optimal wire size, RIA Services uses WCF’s binary encoder combined with plain old XML (referred to as POX, in contrast to SOAP). In WCF terms that means the <a title="BinaryMessageEncodingBindingElement MSDN reference" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.channels.binarymessageencodingbindingelement.aspx">BinaryMessageEncodingBindingElement</a> needs to be configured with <a title="BinaryMessageEncodingBindingElement.MessageVersion MSDN reference" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.channels.binarymessageencodingbindingelement.messageversion.aspx">MessageVersion.None</a>. However if you try that yourself, you’ll notice that the current implementation of the encoder does not allow that. RIA Services uses a private version of the encoder. So in my sample, I provide my own implementation of the binary encoder, which supports plain XML. Here is the binding that the router needs to understand RIA Services traffic.</p>
-<pre class="brush: csharp">Binding binaryPoxBinding = new CustomBinding( 
+~~~ csharp
+Binding binaryPoxBinding = new CustomBinding( 
    new RiaBinaryMessageEncodingBindingElement(), 
    new HttpTransportBindingElement { 
       ManualAddressing = true, 
       MaxReceivedMessageSize = int.MaxValue
    } 
 );
-</pre>
+~~~
 <h3>Second hurdle: switching to HTTP POST</h3>
 <p>Domain services use HTTP GET requests by default on their queries. GET offers caching benefits over POST, which are particularly relevant in the case of domain services, where large data sets with static data may be retrieved frequently.</p>
 <p>Unfortunately, I could not figure out a way to get the WCF router to successfully route a GET request. Speaking to the team who designed the router, it seems SOAP scenarios took precedence to REST scenarios when they did the work, and since SOAP does everything over POST, the other HTTP verbs all get turned to POSTs. This is unfortunate, however it is easy to tell the domain service to switch to using only POST:</p>
-<pre class="brush: csharp">[QueryAttribute(HasSideEffects = true)]
+~~~ csharp
+QueryAttribute(HasSideEffects = true)]
 public IQueryable GetCustomers()
-</pre>
+~~~
 <h3>Final hurdle: URI query strings</h3>
 <p>Along the same lines as the previous issue, the WCF router will ignore anything that comes in the URI after the endpoint name. This is unfortunate, as domain services expect the name of the query to come in the URI. WCF extensibility comes to the rescue, and by plugging in a simple message inspector, we can correct the address of outgoing messages.</p>
-<pre class="brush: csharp">public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel) 
+~~~ csharp
+public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel) 
 { 
    // This ensures that the router will correctly roundtrip URI query string parameters
    object via; 
@@ -45,9 +48,10 @@ public IQueryable GetCustomers()
    } 
    return null; 
 }
-</pre>
+~~~
 <p>These three fixes are included in the sample project. Once the fixes are applied, we can start taking advantage of the capabilities of the router. By default we plug in a filter that matches all incoming messages.</p>
-<pre class="brush: csharp">rc.FilterTable.Add(new MatchAllMessageFilter(), endpointList);
-</pre>
+~~~ csharp
+rc.FilterTable.Add(new MatchAllMessageFilter(), endpointList);
+~~~
 <p>However nothing prevents us from using some more sophisticated filters such as the <a title="XPathMessageFilter MSDN reference" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.dispatcher.xpathmessagefilter.aspx">XPathMessageFilter</a>. Using that filter, we could look for specific elements inside the domain service message and route to different services based on that.</p>
 <p>Hope this is useful to folks out there!<br/>-Yavor</p>

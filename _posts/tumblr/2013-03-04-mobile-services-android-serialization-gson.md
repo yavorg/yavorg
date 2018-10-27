@@ -16,16 +16,18 @@ tumblr_url: http://hashtagfail.com/post/44606137082/mobile-services-android-seri
 <li>Unit testing your client code</li>
 <li>Advanced push scenarios</li>
 </ul><p>Today let&rsquo;s focus on customizing object serialization using the <a href="https://code.google.com/p/google-gson/">gson library</a>, which the Android client library uses under the covers to serialize objects to JSON data. In the previous episode of this series we named our Java object in lowercase, so all the properties would get serialized that way on the wire:</p>
-<pre class="brush: java">public class droid {
+~~~ java
+public class droid {
     public Integer id;
     public String name;
     public Float weight;
     public Integer numberOfLegs;
     public Integer numberOfWheels;
 }
-</pre>
+~~~
 <p>For all of you seasoned Java developers out there, this immediately sticks out as bad programming style: we&rsquo;re not capitalizing things correctly and also we&rsquo;re not using getters and setters. This next class uses gson&rsquo;s serialization attributes to produce the exact same wire representation as above.</p>
-<pre class="brush: java">public class Droid {
+~~~ java
+public class Droid {
     
     @com.google.gson.annotations.SerializedName("id")
     private Integer mId;
@@ -57,17 +59,20 @@ tumblr_url: http://hashtagfail.com/post/44606137082/mobile-services-android-seri
         mNumberOfWheels = numberOfWheels; 
         }	
 }
-</pre>
+~~~
 <p>There is another catch here&hellip; our type name is <strong>Droid</strong> (uppercase), but maybe we want our table name to be lowercase. It&rsquo;s just a matter of which <strong>getTable</strong> overload we use. </p>
-<pre class="brush: java">// Assumes table name is "Droid"
+~~~ java
+// Assumes table name is "Droid"
 MobileServiceTable table = client.getTable(Droid.class);
 // Allows you to use table named "droid" - use this one!
 MobileServiceTable table = client.getTable("droid", Droid.class);
-</pre>
+~~~
 <p>This was a relatively simple serialization trick. To do more we need to whip out the big gun: <strong>GsonBuilder</strong>. To successfully talk to your mobile service, the client needs to do some customizations of its own, so we we need to get a pre-cofigured instance from the the <strong>MobileServiceClient.</strong><strong>createMobileServiceGsonBuilder()</strong> static method. We can then add our own modifications and pass the instance back to the client. The below code does a lot in just a few lines:</p>
 <ul><li>It enables pretty-printing for our output JSON</li>
 <li>It turns on automatic property lower-casing, so we can remove the <strong>@com.google.gson.annotations.SerializedName</strong> annotations from our type definition above. All that copy pasting was making me feel like an attack of the clones (sorry couldn&rsquo;t come up with a better pun here&hellip;)</li>
-</ul><pre class="brush: java">client.setGsonBuilder(
+</ul>
+~~~ java
+client.setGsonBuilder(
     MobileServiceClient
     .createMobileServiceGsonBuilder()
     .setFieldNamingStrategy(new FieldNamingStrategy() {
@@ -78,10 +83,11 @@ MobileServiceTable table = client.getTable("droid", Droid.class);
             }
         })
         .setPrettyPrinting());
-</pre>
+~~~
 <p>Of course we need to add the above code before the calls to any of the methods on the client. </p>
 <p>To really put the cherry on the cake, let&rsquo;s tackle a very challenging problem: complex types. So far all of our properties have neatly serialized to JSON primitives. Imagine we want to add the following property on our <strong>Droid</strong> object:</p>
-<pre class="brush: java">private ArrayList&lt;String&gt; mCatchphrases;
+~~~ java
+private ArrayList&lt;String&gt; mCatchphrases;
     
 public ArrayList&lt;String&gt; getCatchphrases() {
     if(mCatchphrases == null){
@@ -92,12 +98,18 @@ public ArrayList&lt;String&gt; getCatchphrases() {
 private final void setCatchphrases(ArrayList&lt;String&gt; catchphrases){
     mCatchphrases = catchphrases;
 }
-</pre>
+~~~
 <p>Having objects and arrays as properties is a rather advanced feature mostly because we now have to a make a call about how those are represented on the server. Mobile Services doesn&rsquo;t support that out-of-the-box and you would get an error similar to this one:</p>
-<pre class="brush: javascript">{"code":400,"error":"Error: The value of property 'catchphrases' is of type 'object' which is not a supported type."}</pre>
+~~~ json
+{
+    "code":400,
+    "error":"Error: The value of property 'catchphrases' is of type 'object' which is not a supported type."
+}
+~~~
 <p>Let&rsquo;s roll our own custom solution. On serialization we will store the JSON-serialized representation of our complex properties inside JSON strings. On the server, we will simply store the strings inside a string column. On deserialization, we will parse those strings as JSON and deserialize them back into typed objects. A tall order!</p>
 <p>Our strategy here is to register a custom serializer for <strong>ArrayList&lt;T&gt;</strong> types. Here is an implementation I put together:</p>
-<pre class="brush: java">import java.lang.reflect.ParameterizedType;
+~~~ java
+import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
@@ -146,10 +158,11 @@ JsonSerializer&lt;Collection&lt;E&gt;&gt;, JsonDeserializer&lt;Collection&lt;E&g
         return list;
     }
 }
-</pre>
+~~~
 <p>This code is only slightly magical, read through it if you want to stretch your understanding of Java generics. This only covers collections, I&rsquo;ve left doing the same for classes as an exercise to the reader.</p>
 <p>We now need to register the serializer. <strong>MobileServiceClient</strong> provides a convenience method for you here:</p>
-<pre class="brush: java">client.registerSerializer(ArrayList.class, new CollectionSerializer&lt;Object&gt;());
-</pre>
+~~~ java
+client.registerSerializer(ArrayList.class, new CollectionSerializer&lt;Object&gt;());
+~~~
 <p>All that does is add it to your <strong>GsonBuilder</strong> instance using the identically named method.</p>
 <p>That&rsquo;s it for today, in the <a href="{{ site.baseurl }}{% post_url tumblr/2013-03-28-mobile-services-android-querying %}">next post we&rsquo;ll dive into the query model</a>.</p>

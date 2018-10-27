@@ -11,16 +11,19 @@ tumblr_url: http://hashtagfail.com/post/29453543052/azure-node-redesign-homepage
 <p>Over the last three weeks I had the opportunity to work with some great folks across the Azure IX, UX, and PM teams and rethink our dev center. This is new to me, so I wanted to document my experiences here in blog series (hopefully). In this first part we will focus on the dev center homepage.</p>
 <p><em>A big thanks to Molly Bostic, Lydia Bagwell, Jodie Eilers, Jesse Francisco, Brad Goring, Lucas Stanford, Larry Franks, and Mohit Srivastava, without whom none of this would have been possible.</em></p>
 <h3>The current dev center</h3>
-<p><img alt="Current Node.js dev center" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-1.png"/></p>
+<img alt="Current Node.js dev center" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-1.png"/>
 <p>Let&rsquo;s start with the current dev center and the approaches we used to identify issues folks were having with it. First, we reached out to our advisory community and collected some feedback:</p>
-<blockquote>
-<p>“there is <strong>way too much</strong> on this page”</p>
-<p>“make a <strong>clear single message/call to action</strong> above the fold”</p>
-<p>“get rid of the whole left hand items, it&rsquo;s just <strong>clutter</strong>”</p>
-<p>“since one is on the Node page get rid of the other links to all the other languages… <strong>I want to see things about Node, not all the other stuff</strong>”</p>
-</blockquote>
+<ul>
+<li>“there is <strong>way too much</strong> on this page”</li>
+<li>“make a <strong>clear single message/call to action</strong> above the fold”</li>
+<li>“get rid of the whole left hand items, it&rsquo;s just <strong>clutter</strong>”</li>
+<li>“since one is on the Node page get rid of the other links to all the other languages… <strong>I want to see things about Node, not all the other stuff</strong>”</li>
+</ul>
 <p>We then conducted a heat map study and looked at the page navigation patterns associated with the site.</p>
-<p><a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-2.png" rel="gallery1" title="Dev center heat map"> <img alt="Dev center heat map" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-2.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-3.png" rel="gallery1" title="Dev center user paths"> <img alt="Dev center user paths" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-3.png" width="210"/></a></p>
+<div class="gallery" data-columns="2">
+	<img alt="Dev center heat map" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-2.png" />
+	<img alt="Dev center user paths" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-3.png"/>
+</div>
 <p>Some additional learnings emerged at this point:</p>
 <ul><li>Based on the heat map and the flow of visitors from and to the other language developer centers (especially .NET), there seemed to be quite a bit of <strong>&ldquo;browsing&rdquo; behavior</strong>: folks simply exploring different Azure languages. We didn&rsquo;t want to inhibit that flow, so we decided to keep the header that lets you quickly jump between languages</li>
 <li>There is a lot of flow to the tutorials on the page, especially the first tutorial we list on the page. <strong>Users tend to actively seek out tutorials</strong>, as seen in the heat map: it appears that tutorials are the preferred form of content.</li>
@@ -35,15 +38,25 @@ tumblr_url: http://hashtagfail.com/post/29453543052/azure-node-redesign-homepage
 <li>Improve content categorization</li>
 <li>Optimize click stream</li>
 </ol><p>Based on these principles we started sketching. First we played around on the whiteboard and then worked our thinking into wireframes. Here are some of the options that we considered at this stage of the design.</p>
-<p><a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-4.png" rel="gallery2" title="Whiteboard sketch"> <img alt="Whiteboard sketch" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-4.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-5.png" rel="gallery2" title="Wireframe option 1"> <img alt="Wireframe option 1" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-5.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-6.png" rel="gallery2" title="Wireframe option 2"> <img alt="Wireframe option 2" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-6.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-7.png" rel="gallery2" title="Wireframe option 3"> <img alt="Wireframe option 3" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-7.png" width="210"/></a></p>
+<div class="gallery" data-columns="2">
+	<img alt="Whiteboard sketch" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-4.png"/>
+	<img alt="Wireframe option 1" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-5.png"/>
+	<img alt="Wireframe option 2" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-6.png"/>
+	<img alt="Wireframe option 3" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-7.png"/>
+</div>
 <p>You will see that all of the sketches significantly reduce the amount of content and clutter on the page (especially above the fold), partly by removing the left-hand navigation. A single call to action is prominently featured above the fold in all of them. Fresh content is also prominent in all of the designs through the use of a carousel control.</p>
 <p>Option 1 didn&rsquo;t dedicate a permanent spot to the call to action we wanted to highlight. Option 3 caused the content categories (Compute, Data, App Services) to wrap and disrupt the flow of the page. Option 2 was selected and we proceeded  with refining that. </p>
 <h3>Graphic Design</h3>
 <p>We then proceeded to produce high-fidelity screenshots of the selected option. </p>
-<p><a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-8.png" rel="gallery3" title="Carousel front tile"> <img alt="Carousel front tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-8.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-9.png" rel="gallery3" title="Carousel second tile"> <img alt="Carousel second tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-9.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-10.png" rel="gallery3" title="Carousel third tile"> <img alt="Carousel third tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-10.png" width="210"/></a> <a class="fancybox" href="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-11.png" rel="gallery3" title="Carousel fourth tile"> <img alt="Carousel fourth tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-11.png" width="210"/></a></p>
+<div class="gallery" data-columns="2">
+	<img alt="Carousel front tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-8.png"/>
+	<img alt="Carousel second tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-9.png"/>
+	<img alt="Carousel third tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-10.png"/>
+	<img alt="Carousel fourth tile" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-11.png"/>
+</div>
 <p>You will notice a few things that have changed. As the design team was working through this, they realized that the carousel with fresh content we were envisioning wouldn&rsquo;t fit in the small area we had dedicated to it, so we had to invert the carousel and call to action areas. We did not want the call to action to get lost, so the first tile of the carousel was designed to naturally lead folks to get started. We also realized we wanted to maintain the blog spotlight area and it fit nicely alongside our three content categories. </p>
 <h3>To Production and Beyond</h3>
-<p><a href="https://www.windowsazure.com/en-us/develop/nodejs/"><img alt="Updated Node.js dev center" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-12.png"/></a></p>
+<a href="https://www.windowsazure.com/en-us/develop/nodejs/"><img alt="Updated Node.js dev center" src="{{ site.baseurl }}/images/posts/tumblr/azure-node-redesign-homepage-12.png"/></a>
 <p>After a two week design phase and one week of implementation, we were able to push the new design into production and you can <a href="https://www.windowsazure.com/en-us/develop/nodejs/">go check it out now</a>. </p>
 <p>Unfortunately, <strong>releasing the new dev center homepage is only half the battle</strong>. Over the next few weeks we plan to tackle 30+ documentation topics that the dev center contains and make sure each one of them is the best it can be. We are also keenly keeping an eye on a variety of metrics (including the heat maps and navigation data shown above) to make sure the new design is actually helping address the problems we set out to solve. We will continue to tweak and refine the design in response to that data and I hope to share the results as we make progress.</p>
 <p><strong>In the mean time, I would be glad to hear from all of you. Did you use the old or new Node.js dev center? Let me know what you think in the comments!</strong></p>

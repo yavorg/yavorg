@@ -31,6 +31,14 @@ You can also add blockquotes, which are shown at a larger width to help break up
 
 > “Simple can be harder than complex: You have to work hard to get your thinking clean to make it simple. But it’s worth it in the end because once you get there, you can move mountains.”
 
+The theme also supports markdown tables:
+
+| Item                 | Author        | Supports tables? | Price |
+|----------------------|---------------|------------------|-------|
+| Duet Jekyll Theme    | Jekyll Themes | Yes              | $39   |
+| Index Jekyll Theme   | Jekyll Themes | Yes              | $39   |
+| Journal Jekyll Theme | Jekyll Themes | Yes              | $39   |
+
 You can throw in some horizontal rules too:
 
 ---

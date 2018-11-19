@@ -52,6 +52,8 @@ plugins:
 paginate: 6
 paginate_path: "/posts/page:num/"
 
+timezone: "America/Los_Angeles"
+
 # Build settings
 markdown: kramdown
 theme: minima

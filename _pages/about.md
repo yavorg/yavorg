@@ -1,35 +1,8 @@
 ---
-title: About Journal
-subtitle: A stunning personal blog Jekyll theme with an image-focused design.
-description: A stunning personal blog Jekyll theme with an image-focused design.
-featured_image: /images/demo/demo-portrait.jpg
+title: About
+description: Yavor is a Product Manager at goextend.io, a startup that makes in-product extensibility and integrations painless for SaaS developers. Previously at Hulu and Microsoft Azure. 
+featured_image: /images/nav.jpg
 ---
+Yavor is a Product Manager at [Extend](http://goextend.io), a startup that makes in-product extensibility and integrations painless for SaaS developers. He spends his time talking to customers, designing features, and shepherding the product roadmap. Previously, he worked at *Hulu* and *Microsoft*, where he led some early efforts to enable serverless computing on Azure with a focus on mobile developers, and also worked on open-source frameworks that aim to make the cloud accessible from any platform. When not enjoying the beauty of the Pacific Northwest, you can usually find him on an ill-advised (mis)adventure in some remote destination.
 
-![](/images/demo/demo-landscape.jpg)
-
-## Features
-
-Journal is packed with powerful features to showcase your work:
-
-* Beautiful, minimal design
-* Fixed sidebar images that animate as you browse
-* Single column post layout
-* Responsive – works perfectly on all devices
-* Portfolio/projects post type to show your work
-* Blog with pagination
-* Sleek Ajax navigation and page transitions
-* Unique 'gallery' feature for image grids and carousels
-* Built-in contact form with Formspree integration
-* Full markdown support and code highlighting
-* Social media icons
-* Fast page rendering
-* Built with SEO best practices in mind
-* Customize everything – colors, spacing, fonts, sizes etc. – via a simple settings file
-* Works with GitHub Pages
-* Updated and supported by the developers
-
-## Get Index
-
-Journal is created and supported by [Jekyll Themes](https://jekyllthemes.io), and is available for $39.
-
-<a href="https://jekyllthemes.io/theme/journal-personal-jekyll-theme" class="button button--large">Get This Theme</a>
+![]({{ site.baseurl }}/images/about.jpg)

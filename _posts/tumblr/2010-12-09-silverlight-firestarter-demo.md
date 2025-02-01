@@ -4,7 +4,9 @@ date: '2010-12-09T00:00:00-08:00'
 tags:
 - Silverlight
 - WCF
-tumblr_url: http://hashtagfail.com/post/15441242450/silverlight-firestarter-demo
+redirect_from:
+- /post/15441242450/
+- /post/15441242450/silverlight-firestarter-demo/
 ---
 <p>In my <a href="{{ site.baseurl }}{% post_url tumblr/2010-12-08-silverlight-firestarter-2010-talk-and-demo %}" title="Talk slides and video">previous post</a> I linked to the video and slides from my talk. <a href="http://code.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=silverlightws&amp;DownloadId=14622" title="BookShelf app">This point contains the code sample, which is available here.</a></p>
 <h3>Setting up your machine</h3>

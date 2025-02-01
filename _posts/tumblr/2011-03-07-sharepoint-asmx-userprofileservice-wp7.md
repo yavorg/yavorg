@@ -5,7 +5,9 @@ tags:
 - WCF
 - Silverlight
 - Windows Phone
-tumblr_url: http://hashtagfail.com/post/3706541868/sharepoint-asmx-userprofileservice-wp7
+redirect_from:
+- /post/3706541868/
+- /post/3706541868/sharepoint-asmx-userprofileservice-wp7/
 ---
 <p><em><strong>UPDATE: &hellip; and it wasn&rsquo;t long before Matthew McDermott went ahead and implemented ths as an actual sample, which you can get <a title="Matthew's sample showing how to do this" href="http://www.ableblue.com/blog/archive/2011/03/18/silverlight-and-sharepoint-user-profile-service-guids.aspx">here</a>.</strong></em></p>
 <p>A while back I <a title="Workaround ASMX services using char and guid for Silverlight 4" href="http://blogs.msdn.com/b/silverlightws/archive/2010/05/26/workaround-for-accessing-some-asmx-services-from-silverlight-4.aspx">blogged a workaround</a>for accessing some ASMX services from Silverlight 4. The problem was that the <strong>guid</strong> and <strong>char </strong>types that those services return are not recognized by Silverlight and you end up with the exception below. One of the important services affected by this is SharePoint&rsquo;s UserProfileService, which I realize is pretty important to a lot of developers.</p>

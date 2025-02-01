@@ -4,7 +4,9 @@ date: '2012-09-15T21:14:00-07:00'
 tags:
 - Windows Azure
 - Node.js
-tumblr_url: http://hashtagfail.com/post/31636752900/azure-site-create-bug
+redirect_from:
+- /post/31636752900/
+- /post/31636752900/azure-site-create-bug/
 ---
 <p><em><strong>Update: It appears that azure site start/stop are also affected. We are working on a fix for both issues.</strong></em></p>
 <p>We are experiencing a temporary bug in the &ldquo;azure&rdquo; cross-platform tool for Mac and Linux. Some recent changes in the Windows Azure Websites API have broken some of the site creation functionality supported by the tool.</p>

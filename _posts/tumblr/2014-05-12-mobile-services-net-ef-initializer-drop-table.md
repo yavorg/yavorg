@@ -3,7 +3,9 @@ title: EF development-time initializer for your .NET-based mobile service
 date: '2014-05-12T18:06:00-07:00'
 tags:
 - Azure Mobile Services
-tumblr_url: http://hashtagfail.com/post/85578106830/mobile-services-net-ef-initializer-drop-table
+redirect_from:
+- /post/85578106830/
+- /post/85578106830/mobile-services-net-ef-initializer-drop-table/
 ---
 <p><strong><em>Update: look at that&hellip; based on your feedback we&rsquo;ve baked this right into the product (starting with version 1.0.342 of our NuGet package). Check out <a href="http://azure.microsoft.com/en-us/documentation/articles/mobile-services-dotnet-backend-how-to-use-code-first-migrations/">this tutorial</a> for instructions on how to use the new initializers, and please disregard the code below. What&rsquo;s in the box works better!</em></strong></p>
 <p>A few folks have encountered an issue while developing a .NET-based mobile service using our VS template or portal quickstart. If you publish your mobile service to the cloud and then make some changes to the model and re-publish, the EF initializer will fail complaining that it doesn&rsquo;t have sufficient permissions. The error might look like so in the Logs tab of the portal:</p>

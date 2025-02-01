@@ -4,7 +4,9 @@ date: '2010-10-26T18:48:00-07:00'
 tags:
 - WCF
 - JavaScript
-tumblr_url: http://hashtagfail.com/post/1411309356/wcf-http-jquery-pdc10
+redirect_from:
+- /post/1411309356/
+- /post/1411309356/wcf-http-jquery-pdc10/
 ---
 <p>As you <a title="Glenn Block's post about his PDC talk" href="http://blogs.msdn.com/b/gblock/archive/2010/10/26/taking-http-support-in-wcf-to-the-next-level.aspx">may have heard</a> from <a title="Glenn Block Twitter page" href="http://twitter.com/gblock">@gblock</a> WCF is making some significant new investments around HTTP to make sure HTTP-based services are first-class within our stack. As part of this effort, we are renewing our focus on JavaScript clients and <a title="jQuery homepage" href="http://jquery.com/">jQuery</a> in particular. To learn more, check out Glenn&rsquo;s PDC10 talk:</p>
 <hr/>

@@ -3,7 +3,9 @@ title: JsonValue guts and glory
 date: '2010-10-29T08:41:00-07:00'
 tags:
 - JavaScript
-tumblr_url: http://hashtagfail.com/post/1432485895/jsonvalue-json-walkthrough
+redirect_from: 
+- /post/1432485895/
+- /post/1432485895/jsonvalue-json-walkthrough/
 ---
 <p>As part of the new set of WCF features at <a href="http://wcf.codeplex.com">http://wcf.codeplex.com</a>, we&rsquo;re porting a feature that has existed in Silverlight to the framework. <strong>JsonValue </strong>is the base abstract class for a set of types that you can use to work with JSON data in a weakly-typed way: <strong>JsonPrimitive</strong>, <strong>JsonArray</strong>, and <strong>JsonObject</strong>. The idea here is similar to how you use XElement to work with XML data: you don&rsquo;t need to pre-generate a strong type to deserialize into.</p>
 <h3>Basics</h3>

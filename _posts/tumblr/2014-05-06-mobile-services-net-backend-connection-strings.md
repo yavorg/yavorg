@@ -3,7 +3,9 @@ title: Using custom connection strings with the mobile services .NET backend
 date: '2014-05-06T15:58:00-07:00'
 tags:
 - Azure Mobile Services
-tumblr_url: http://hashtagfail.com/post/84964727000/mobile-services-net-backend-connection-strings
+redirect_from:
+- /post/84964727000/
+- /post/84964727000/mobile-services-net-backend-connection-strings/
 ---
 <p><em><strong>UPDATE: The below content is now outdated&hellip; we have enabled a first-class connection string picker on the Configure tab of your mobile service. Specify the connection string there, and then you can easily use it exactly the same way as if it were defined in Web.config.</strong></em> </p>
 <p>Since we introduced the .NET backend in Mobile Services, with rich support for connecting to existing databases, we have received a lot of questions around using custom connection strings. By default, Mobile Services creates an Azure SQL Database for you and the connection string used to refer to that is named <strong>MS_TableConnectionString.</strong> Our quickstart and Visual Studio project template uses that connection string by default. </p>

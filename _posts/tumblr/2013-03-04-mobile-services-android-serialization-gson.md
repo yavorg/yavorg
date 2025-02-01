@@ -5,7 +5,9 @@ date: '2013-03-04T22:57:00-08:00'
 tags:
 - Azure Mobile Services
 - Android
-tumblr_url: http://hashtagfail.com/post/44606137082/mobile-services-android-serialization-gson
+redirect_from:
+- /post/44606137082/
+- /post/44606137082/mobile-services-android-serialization-gson/
 ---
 <p>Welcome to part two of my blog series about the new Mobile Services Android client SDK. Here are the other posts in the series:</p>
 <ul><li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-typed-untyped %}">Working with typed and untyped data</a></li>

@@ -4,7 +4,9 @@ date: '2011-05-12T21:06:00-07:00'
 tags:
 - WCF RIA Services
 - Silverlight
-tumblr_url: http://hashtagfail.com/post/5441929717/ria-services-active-federation
+redirect_from:
+- /post/5441929717/
+- /post/5441929717/ria-services-active-federation/
 ---
 <p><strong><em>UPDATE: A coworker here at Microsoft has brought up some interesting thoughts regarding this approach, and I&rsquo;ve added a brief discussion below the second diagram.</em></strong></p>
 <p>Recently I decided to experiment with RIA Services in federated authentication scenarios. For those of you that aren&rsquo;t familiar with federation, let&rsquo;s consider the following scenario: my company Contoso builds an expense reporting application that I host in the cloud. One day I get Fabrikam to sign up as a client, and now I have to onboard all Fabrikam employees onto my system. It is true that I could create a login for every employee, but that is impractical because Fabrikam employees have to remember that extra login, and also I would need to keep my list of logins in sync when employees join or leave Fabrikam.</p>

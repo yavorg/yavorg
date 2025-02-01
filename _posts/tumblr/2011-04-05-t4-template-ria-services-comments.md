@@ -4,7 +4,9 @@ date: '2011-04-05T15:01:00-07:00'
 tags:
 - WCF RIA Services
 - Silverlight
-tumblr_url: http://hashtagfail.com/post/4374567871/t4-template-ria-services-comments
+redirect_from:
+- /post/4374567871/
+- /post/4374567871/t4-template-ria-services-comments/
 ---
 <p>As you know one of the new features in RIA Services V1 SP1 is support for T4 templates. The T4 template is a design-time artifact that can modify the way RIA Services client-side code generation happens. For more information on T4 templates, check out <a title="T4 in RIA Services" href="http://jeffhandley.com/archive/2010/10/28/RiaServicesT4WalkUp.aspx">Jeff Handley&rsquo;s blog post</a> on the subject.</p>
 <p>Recently I was experimenting with RIA Services and I discovered that the IntelliSense comments for my entities were very sparse on the client. For example my Customer entity has a CompanyName property and the IntelliSense comment for that was:</p>

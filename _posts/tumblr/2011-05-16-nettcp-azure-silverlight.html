@@ -5,7 +5,9 @@ tags:
 - WCF
 - Silverlight
 - Windows Azure
-tumblr_url: http://hashtagfail.com/post/5560439794/nettcp-azure-silverlight
+redirect_from:
+- /post/5560439794/
+- /post/5560439794/nettcp-azure-silverlight/
 ---
 <p><em><strong>UPDATE: Folks from the Windows Azure team have <a title="NetTcp in WebRole" href="http://blogs.msdn.com/b/windowsazure/archive/2011/06/27/hosting-services-with-was-and-iis-on-windows-azure.aspx">posted an improved solution for how to host NetTcp services in Azure by using a WebRole instead of a WorkerRole</a>, which simplifies the setup quite a bit.</strong></em></p>
 <p>Silverlight 4 added support for WCF&rsquo;s <a title="NetTcpBinding on MSDN" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.nettcpbinding.aspx">NetTcpBinding</a>, which is a performant and scalable TCP-based binding. It is also a useful binding when used in Windows Azure because it is not affected by Azure&rsquo;s random load-balancer when using multiple instances of the service and creates an effectively pinned duplex connection to the cloud. The only disadvantage of the NetTcp binding is that it Silverlight does not support TCP transport security, so all the traffic to the web service is unsecured and can be intercepted by malicious parties. That may or may not be acceptable for your application.</p>

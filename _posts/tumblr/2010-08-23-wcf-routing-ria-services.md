@@ -5,7 +5,9 @@ tags:
 - Silverlight
 - WCF RIA Services
 - WCF
-tumblr_url: http://hashtagfail.com/post/1000967093/wcf-routing-ria-services
+redirect_from:
+- /post/1000967093/
+- /post/1000967093/wcf-routing-ria-services/
 ---
 <p>Recently we have had a few customers ask us how WCF RIA Services integrates with the WCF Routing features shipped in .Net 4. I spent some time over the last week building a prototype and learning about the issues you encounter in this scenario.</p>
 <p><a title="Sample source code" href="http://code.msdn.microsoft.com/Project/Download/FileDownload.aspx?ProjectName=RiaServices&amp;DownloadId=13630">The sample source code is available here for download.</a> Please keep in mind that in order for the sample works, you need the <a title="Sample database download" href="http://msftdbprodsamples.codeplex.com/">AdventureWorksLT</a> database deployed to your local SQL Server Express instance… and don’t forget to update the connection string in Web.config!</p>

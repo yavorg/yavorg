@@ -5,7 +5,9 @@ tags:
 - Windows Azure
 - Node.js
 featured_image: '/images/posts/tumblr/tumblr_m7sjtoJTKd1qccglw.jpg'
-tumblr_url: http://hashtagfail.com/post/28086921700/azure-0-6-1-breaking-change
+redirect_from:
+- /post/28086921700/
+- /post/28086921700/azure-0-6-1-breaking-change/
 ---
 <a href="http://www.flickr.com/photos/runran/3069844856/"><em>Image credit: runran on Flickr</em></a>
 <p>We made a breaking change between versions 0.6.0 and 0.6.1 of the <a href="https://github.com/WindowsAzure/azure-sdk-for-node">Windows Azure command-line tool for Mac and Linux</a>. You can get the tool from <a href="http://windowsazure.com">http://windowsazure.com</a> or via the <strong>azure</strong> package on <strong>npm</strong>. The tool lets you create and manage Azure websites and Virtual Machines from any platform.</p>

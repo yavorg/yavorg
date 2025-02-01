@@ -4,7 +4,9 @@ date: '2010-10-20T12:25:00-07:00'
 tags:
 - Silverlight
 - WCF
-tumblr_url: http://hashtagfail.com/post/1360386757/weboperationcontext-silverlight-response
+redirect_from:
+- /post/1360386757/
+- /post/1360386757/weboperationcontext-silverlight-response/
 ---
 <p>This came up as a question from a customer today: how do you get details of the HTTP response message that a WCF proxy in Silverlight received? If you thought of  <a title="System.ServiceModel.OperationContext" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.operationcontext(v=VS.95).aspx">OperationContext</a> and <a title="System.ServiceModel.Web.WebOperationContext" href="http://msdn.microsoft.com/en-us/library/system.servicemodel.web.weboperationcontext(v=VS.95).aspx">WebOperationContext</a>, you&rsquo;re on the right track, but you have only half of the story.</p>
 <p>In Silverlight, in order to get to these context objects, you have to switch from the event-based async pattern to the more complex Begin/End-based async pattern. Within that pattern, you need to instantiate an OperationContextScope and call the End* method inside that scope, before you can access the context objects themselves. Check out this code snippet:</p>

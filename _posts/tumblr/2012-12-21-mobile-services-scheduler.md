@@ -3,7 +3,9 @@ title: Ski weather app with the new Mobile Services scheduler
 date: '2012-12-21T13:01:00-08:00'
 tags:
 - Azure Mobile Services
-tumblr_url: http://hashtagfail.com/post/38488024433/mobile-services-scheduler
+redirect_from:
+- /post/38488024433/
+- /post/38488024433/mobile-services-scheduler/
 ---
 <p><strong><em>Update:</em></strong><em> Corrected the server script code snippet.<br/><strong>Update 2:</strong>The example below will unfortunately no longer work due to Twitter API changes&hellip; I need to update it. In the mean time, our official documentation shows a very similar scenario, so <a href="http://www.windowsazure.com/en-us/develop/mobile/tutorials/schedule-backend-tasks/">check that out</a>.<br/></em></p>
 <p>As <a href="http://weblogs.asp.net/scottgu/archive/2012/12/21/great-updates-to-windows-azure-mobile-services-web-sites-sql-data-sync-acs-media-more.aspx">Scott announced earlier today</a>, Mobile Services is celebrating the holiday season by bringing you some cool new features, including the ability to execute scheduled jobs (or &ldquo;cron jobs&rdquo;). </p>

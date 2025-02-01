@@ -4,7 +4,9 @@ date: '2013-07-20T18:37:00-07:00'
 tags:
 - Azure Mobile Services
 - Windows Phone
-tumblr_url: http://hashtagfail.com/post/56006227192/portable-apps-mobile-services-pcl
+redirect_from: 
+- /post/56006227192/
+- /post/56006227192/portable-apps-mobile-services-pcl/
 ---
 <p>I don&rsquo;t want to be one of those people who&rsquo;s always going on about their ViewModel, but I was pretty pleased with the way I was able to factor the <a href="https://github.com/yavorg/samples/tree/master/SlapChat">sample</a> from my <a href="{{ site.baseurl }}{% post_url tumblr/2013-07-01-build-mobile-services %}">Build talk</a>, so I thought I would share. My goal was to structure my Windows Phone 8 code in a way so I could reuse as much of it as possible if I decided to build a Windows Phone 7.5 or Windows Store version of the app.</p>
 <p>I mostly followed standard MVVM best practices here, and I assume most of you are familiar with those. I leaned on <a href="http://mvvmlight.codeplex.com/">MvvmLight</a> as my framework of choice. <strong>The strategy here was to try to make all ViewModel and Model code easily portable. This was a natural fit with the <a href="http://msdn.microsoft.com/en-us/library/vstudio/gg597391(v=vs.110).aspx">Portable Class Library</a> (PCL) support introduced in VS 2012. </strong>This is the high-level project structure I devised:</p>

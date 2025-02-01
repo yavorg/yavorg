@@ -4,7 +4,9 @@ date: '2011-10-06T00:30:00-07:00'
 tags:
 - WCF
 - Silverlight
-tumblr_url: http://hashtagfail.com/post/11094642160/wcf-wif-silverlight-active-federation
+redirect_from:
+- /post/11094642160/
+- /post/11094642160/wcf-wif-silverlight-active-federation/
 ---
 <p>In <a title="RIA Services active federation" href="{{ site.baseurl }}{% post_url tumblr/2011-05-12-ria-services-active-federation %}">this post</a> I provided a description of the active federation authentication pattern and shared how to implement it with RIA Services. In this post I will show how to do the same but use a regular WCF service instead of a RIA Services DomainService. I am including the diagram from my last post, with some minimal modifications here.</p>
 <img alt="Active federation flow with Silverlight, WCF, and WIF" src="{{ site.baseurl }}/images/posts/tumblr/tumblr_lsmur0bKCd1qccglw.png" style="margin-right: auto; margin-left: auto"/>

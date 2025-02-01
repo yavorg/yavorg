@@ -5,7 +5,9 @@ date: '2013-03-28T00:57:00-07:00'
 tags:
 - Azure Mobile Services
 - Android
-tumblr_url: http://hashtagfail.com/post/46493261719/mobile-services-android-querying
+redirect_from:
+- /post/46493261719/
+- /post/46493261719/mobile-services-android-querying/
 ---
 <p>In today&rsquo;s post we continue our Android blog series for Mobile Services. Here are the other posts in the series.</p>
 <ul><li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-typed-untyped %}">Working with typed and untyped data</a></li>

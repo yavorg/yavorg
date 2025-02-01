@@ -5,7 +5,9 @@ date: '2013-03-04T22:55:00-08:00'
 tags:
 - Azure Mobile Services
 - Android
-tumblr_url: http://hashtagfail.com/post/44606054459/mobile-services-android-typed-untyped
+redirect_from:
+- /post/44606054459/
+- /post/44606054459/mobile-services-android-typed-untyped/
 ---
 <p>To celebrate the Mobile Services Android launch, I&rsquo;ve decided to put together a blog series over the next week to highlight some of the cool new features in our Android SDK. Here is the list of subjects I plan to cover:</p>
 <ul><li><a href="{{ site.baseurl }}{% post_url tumblr/2013-03-04-mobile-services-android-typed-untyped %}">Working with typed and untyped data</a></li>

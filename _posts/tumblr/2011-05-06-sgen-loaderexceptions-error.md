@@ -3,7 +3,9 @@ title: Debugging SGEN LoaderExceptions errors
 date: '2011-05-06T16:33:00-07:00'
 tags:
 - WCF
-tumblr_url: http://hashtagfail.com/post/5255977780/sgen-loaderexceptions-error
+redirect_from:
+- /post/5255977780/
+- /post/5255977780/sgen-loaderexceptions-error/
 ---
 <p>Recently we were contacted by a customer who was building a Release version of their assembly in Visual Studio and encountered the following error:</p>
 <img src="{{ site.baseurl }}/images/posts/tumblr/tumblr_lkspj38nwO1qccglw.png" alt="SGEN error in Visual Studio" style="margin-left: auto; margin-right: auto"/>

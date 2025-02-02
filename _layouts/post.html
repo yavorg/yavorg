@@ -25,12 +25,11 @@ layout: default
 
 <!-- yavorg change --> 
 <section class="single">
-
 	<div class="wrap" id="disqus_thread"></div>
 	<script>
 	var disqus_config = function () {
-	this.page.url = {{ site.baseurl }}{{ page.url }}; 
-	this.page.identifier = {{ page.url }}; 
+	this.page.url = '{{ site.url }}{{ page.url }}'; 
+	this.page.identifier = '{{ page.url }}'; 
 	};
 	(function() { // DON'T EDIT BELOW THIS LINE
 	var d = document, s = d.createElement('script');
@@ -40,6 +39,5 @@ layout: default
 	})();
 	</script>
 	<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
 </section>
 
